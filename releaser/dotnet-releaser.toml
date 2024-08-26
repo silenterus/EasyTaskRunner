@@ -663,373 +663,373 @@ title = [
 
 [[changelog.autolabeler]]
 label = "config"
-regex = '^([Uu]pdate)\s+[Cc]onfig'
+title = '^([Uu]pdate)\s+[Cc]onfig'
 
 [[changelog.autolabeler]]
 label = "migration"
-regex = '^([Aa]dd|[Uu]pdate)\s+[Mm]igration'
+title = '^([Aa]dd|[Uu]pdate)\s+[Mm]igration'
 
 [[changelog.autolabeler]]
 label = "feature-flag"
-regex = '^([Aa]dd|[Uu]pdate)\s+[Ff]eature\s+[Ff]lag'
+title = '^([Aa]dd|[Uu]pdate)\s+[Ff]eature\s+[Ff]lag'
 
 [[changelog.autolabeler]]
 label = "seo"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Ss]eo'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Ss]eo'
 
 [[changelog.autolabeler]]
 label = "a11y"
-regex = '^([Ii]mprove|[Aa]dd)\s+[Aa]ccessibility'
+title = '^([Ii]mprove|[Aa]dd)\s+[Aa]ccessibility'
 
 [[changelog.autolabeler]]
 label = "build"
-regex = '^([Uu]pdate|[Ff]ix)\s+[Bb]uild'
+title = '^([Uu]pdate|[Ff]ix)\s+[Bb]uild'
 
 [[changelog.autolabeler]]
 label = "ci"
-regex = '^([Uu]pdate)\s+ci'
+title = '^([Uu]pdate)\s+ci'
 
 [[changelog.autolabeler]]
 label = "cd"
-regex = '^([Uu]pdate)\s+cd'
+title = '^([Uu]pdate)\s+cd'
 
 [[changelog.autolabeler]]
 label = "database"
-regex = '^([Oo]ptimize)\s+[Dd]atabase'
+title = '^([Oo]ptimize)\s+[Dd]atabase'
 
 [[changelog.autolabeler]]
 label = "error-handling"
-regex = '^([Ii]mprove|[Aa]dd)\s+[Ee]rror\s+[Hh]andling'
+title = '^([Ii]mprove|[Aa]dd)\s+[Ee]rror\s+[Hh]andling'
 
 [[changelog.autolabeler]]
 label = "logging"
-regex = '^([Uu]pdate|[Aa]dd)\s+[Ll]ogging'
+title = '^([Uu]pdate|[Aa]dd)\s+[Ll]ogging'
 
 #[[changelog.autolabeler]]
 #label = "monitoring"
-#regex = `'^([Aa]dd|[Uu]pdate
+#title = `'^([Aa]dd|[Uu]pdate
 
 [[changelog.autolabeler]]
 label = "scalability"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Ss]calability'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Ss]calability'
 
 [[changelog.autolabeler]]
 label = "security-patch"
-regex = '^([Ss]ecurity\s+[Pp]atch)'
+title = '^([Ss]ecurity\s+[Pp]atch)'
 
 [[changelog.autolabeler]]
 label = "cleanup"
-regex = '^([Cc]leanup)'
+title = '^([Cc]leanup)'
 
 [[changelog.autolabeler]]
 label = "api-enhancement"
-regex = '^([Aa]dd|[Uu]pdate)\s+[Aa]pi'
+title = '^([Aa]dd|[Uu]pdate)\s+[Aa]pi'
 
 [[changelog.autolabeler]]
 label = "ux"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Uu]x'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Uu]x'
 
 [[changelog.autolabeler]]
 label = "theme"
-regex = '^([Uu]pdate|[Aa]dd)\s+[Tt]heme|[Ss]tyling'
+title = '^([Uu]pdate|[Aa]dd)\s+[Tt]heme|[Ss]tyling'
 
 [[changelog.autolabeler]]
 label = "framework-upgrade"
-regex = '^([Uu]pgrade)\s+[Ff]ramework'
+title = '^([Uu]pgrade)\s+[Ff]ramework'
 
 [[changelog.autolabeler]]
 label = "deployment"
-regex = '^([Oo]ptimize)\s+[Dd]eployment'
+title = '^([Oo]ptimize)\s+[Dd]eployment'
 
 [[changelog.autolabeler]]
 label = "integration"
-regex = '^([Aa]dd|[Ii]ntegrate)\s+with'
+title = '^([Aa]dd|[Ii]ntegrate)\s+with'
 
 [[changelog.autolabeler]]
 label = "mobile"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Mm]obile'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Mm]obile'
 
 [[changelog.autolabeler]]
 label = "devops"
-regex = '^([Ii]mplement|[Ii]mprove)\s+[Dd]evOps'
+title = '^([Ii]mplement|[Ii]mprove)\s+[Dd]evOps'
 
 [[changelog.autolabeler]]
 label = "testing"
-regex = '^([Ii]mprove|[Aa]dd)\s+[Tt]ests?'
+title = '^([Ii]mprove|[Aa]dd)\s+[Tt]ests?'
 
 [[changelog.autolabeler]]
 label = "documentation-update"
-regex = '^([Uu]pdate)\s+[Dd]oc'
+title = '^([Uu]pdate)\s+[Dd]oc'
 
 [[changelog.autolabeler]]
 label = "i18n"
-regex = '^([Ii]mprove|[Aa]dd)\s+i18n'
+title = '^([Ii]mprove|[Aa]dd)\s+i18n'
 
 [[changelog.autolabeler]]
 label = "performance-monitoring"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Pp]erformance\s+[Mm]onitoring'
+title = '^([Aa]dd|[Ii]mprove)\s+[Pp]erformance\s+[Mm]onitoring'
 
 [[changelog.autolabeler]]
 label = "code-standards"
-regex = '^([Ee]nforce)\s+[Cc]ode\s+[Ss]tandards'
+title = '^([Ee]nforce)\s+[Cc]ode\s+[Ss]tandards'
 
 [[changelog.autolabeler]]
 label = "security-compliance"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Ss]ecurity\s+[Cc]ompliance'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Ss]ecurity\s+[Cc]ompliance'
 
 [[changelog.autolabeler]]
 label = "code-generation"
-regex = '^([Aa]dd|[Gg]enerate)\s+[Cc]ode'
+title = '^([Aa]dd|[Gg]enerate)\s+[Cc]ode'
 
 [[changelog.autolabeler]]
 label = "legacy-refactoring"
-regex = '^([Rr]efactor)\s+[Ll]egacy'
+title = '^([Rr]efactor)\s+[Ll]egacy'
 
 [[changelog.autolabeler]]
 label = "accessibility-testing"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Aa]ccessibility\s+[Tt]esting'
+title = '^([Aa]dd|[Ii]mprove)\s+[Aa]ccessibility\s+[Tt]esting'
 
 [[changelog.autolabeler]]
 label = "cloud"
-regex = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]loud'
+title = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]loud'
 
 [[changelog.autolabeler]]
 label = "ai-ml"
-regex = '^([Ii]mprove|[Aa]dd)\s+[Aa][Ii]|[Mm][Ll]'
+title = '^([Ii]mprove|[Aa]dd)\s+[Aa][Ii]|[Mm][Ll]'
 
 [[changelog.autolabeler]]
 label = "blockchain"
-regex = '^([Aa]dd|[Ii]ntegrate)\s+[Bb]lockchain'
+title = '^([Aa]dd|[Ii]ntegrate)\s+[Bb]lockchain'
 
 [[changelog.autolabeler]]
 label = "vr-ar"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Vv][Rr]|[Aa][Rr]'
+title = '^([Aa]dd|[Ii]mprove)\s+[Vv][Rr]|[Aa][Rr]'
 
 [[changelog.autolabeler]]
 label = "social-media"
-regex = '^([Aa]dd|[Ii]ntegrate)\s+[Ss]ocial\s+[Mm]edia'
+title = '^([Aa]dd|[Ii]ntegrate)\s+[Ss]ocial\s+[Mm]edia'
 
 [[changelog.autolabeler]]
 label = "payment"
-regex = '^([Aa]dd|[Ii]ntegrate)\s+[Pp]ayment\s+[Gg]ateway'
+title = '^([Aa]dd|[Ii]ntegrate)\s+[Pp]ayment\s+[Gg]ateway'
 
 [[changelog.autolabeler]]
 label = "privacy"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Pp]rivacy'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Pp]rivacy'
 
 [[changelog.autolabeler]]
 label = "auth"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Aa]uth'
+title = '^([Aa]dd|[Ii]mprove)\s+[Aa]uth'
 
 [[changelog.autolabeler]]
 label = "real-time"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Rr]eal\s+[Tt]ime'
+title = '^([Aa]dd|[Ii]mprove)\s+[Rr]eal\s+[Tt]ime'
 
 [[changelog.autolabeler]]
 label = "chatbot"
-regex = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]hatbot'
+title = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]hatbot'
 
 [[changelog.autolabeler]]
 label = "iot"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Ii][Oo][Tt]'
+title = '^([Aa]dd|[Ii]mprove)\s+[Ii][Oo][Tt]'
 
 [[changelog.autolabeler]]
 label = "microservices"
-regex = '^([Aa]dd|[Uu]pdate)\s+[Mm]icroservices'
+title = '^([Aa]dd|[Uu]pdate)\s+[Mm]icroservices'
 
 [[changelog.autolabeler]]
 label = "serverless"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Ss]erverless'
+title = '^([Aa]dd|[Ii]mprove)\s+[Ss]erverless'
 
 [[changelog.autolabeler]]
 label = "big-data"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Bb]ig\s+[Dd]ata|[Aa]nalytics'
+title = '^([Aa]dd|[Ii]mprove)\s+[Bb]ig\s+[Dd]ata|[Aa]nalytics'
 
 [[changelog.autolabeler]]
 label = "e-commerce"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Ee]-commerce'
+title = '^([Aa]dd|[Ii]mprove)\s+[Ee]-commerce'
 
 [[changelog.autolabeler]]
 label = "cms"
-regex = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]ms'
+title = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]ms'
 
 [[changelog.autolabeler]]
 label = "api-security"
-regex = '^([Ii]mprove)\s+[Aa]pi\s+[Ss]ecurity'
+title = '^([Ii]mprove)\s+[Aa]pi\s+[Ss]ecurity'
 
 [[changelog.autolabeler]]
 label = "cross-platform"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Cc]ross-platform'
+title = '^([Aa]dd|[Ii]mprove)\s+[Cc]ross-platform'
 
 [[changelog.autolabeler]]
 label = "pwa"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Pp]wa'
+title = '^([Aa]dd|[Ii]mprove)\s+[Pp]wa'
 
 [[changelog.autolabeler]]
 label = "cryptography"
-regex = '^([Ii]mprove|[Aa]dd)\s+[Cc]ryptography'
+title = '^([Ii]mprove|[Aa]dd)\s+[Cc]ryptography'
 
 [[changelog.autolabeler]]
 label = "code-review"
-regex = '^([Ii]mprove)\s+[Cc]ode\s+[Rr]eview'
+title = '^([Ii]mprove)\s+[Cc]ode\s+[Rr]eview'
 
 [[changelog.autolabeler]]
 label = "onboarding"
-regex = '^([Ii]mprove|[Aa]dd)\s+[Oo]nboarding'
+title = '^([Ii]mprove|[Aa]dd)\s+[Oo]nboarding'
 
 [[changelog.autolabeler]]
 label = "data-visualization"
-regex = '^([Ii]mprove|[Aa]dd)\s+[Dd]ata\s+[Vv]isualization'
+title = '^([Ii]mprove|[Aa]dd)\s+[Dd]ata\s+[Vv]isualization'
 
 [[changelog.autolabeler]]
 label = "tooling"
-regex = '^([Ii]mprove|[Aa]dd)\s+[Tt]ooling|[Aa]utomation'
+title = '^([Ii]mprove|[Aa]dd)\s+[Tt]ooling|[Aa]utomation'
 
 [[changelog.autolabeler]]
 label = "multi-tenancy"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Mm]ulti\s*-[Tt]enancy'
+title = '^([Aa]dd|[Ii]mprove)\s+[Mm]ulti\s*-[Tt]enancy'
 
 [[changelog.autolabeler]]
 label = "compliance"
-regex = '^([Uu]pdate|[Ii]mprove)\s+[Cc]ompliance|[Rr]egulatory'
+title = '^([Uu]pdate|[Ii]mprove)\s+[Cc]ompliance|[Rr]egulatory'
 
 [[changelog.autolabeler]]
 label = "benchmarking"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Pp]erformance\s+[Bb]enchmarking'
+title = '^([Aa]dd|[Ii]mprove)\s+[Pp]erformance\s+[Bb]enchmarking'
 
 [[changelog.autolabeler]]
 label = "email"
-regex = '^([Aa]dd|[Ii]ntegrate)\s+[Ee]mail|[Nn]otifications'
+title = '^([Aa]dd|[Ii]ntegrate)\s+[Ee]mail|[Nn]otifications'
 
 [[changelog.autolabeler]]
 label = "dependency-management"
-regex = '^([Uu]pdate|[Mm]anage)\s+[Dd]ependencies'
+title = '^([Uu]pdate|[Mm]anage)\s+[Dd]ependencies'
 
 [[changelog.autolabeler]]
 label = "load-testing"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Ll]oad\s+[Tt]esting|[Ss]tress\s+[Tt]esting'
+title = '^([Aa]dd|[Ii]mprove)\s+[Ll]oad\s+[Tt]esting|[Ss]tress\s+[Tt]esting'
 
 [[changelog.autolabeler]]
 label = "decommission"
-regex = '^([Rr]emove|[Dd]eprecate)\s+'
+title = '^([Rr]emove|[Dd]eprecate)\s+'
 
 [[changelog.autolabeler]]
 label = "dark-mode"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Dd]ark\s+[Mm]ode'
+title = '^([Aa]dd|[Ii]mprove)\s+[Dd]ark\s+[Mm]ode'
 
 [[changelog.autolabeler]]
 label = "svg"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Ss]vg'
+title = '^([Aa]dd|[Ii]mprove)\s+[Ss]vg'
 
 [[changelog.autolabeler]]
 label = "wcag"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Ww]eb\s+[Aa]ccessibility'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Ww]eb\s+[Aa]ccessibility'
 
 [[changelog.autolabeler]]
 label = "seo-updates"
-regex = '^([Uu]pdate|[Ii]mprove)\s+[Ss]eo'
+title = '^([Uu]pdate|[Ii]mprove)\s+[Ss]eo'
 
 [[changelog.autolabeler]]
 label = "responsive-design"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Rr]esponsive\s+[Dd]esign'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Rr]esponsive\s+[Dd]esign'
 
 [[changelog.autolabeler]]
 label = "security-audit"
-regex = '^([Cc]onduct|[Ii]mprove)\s+[Ss]ecurity\s+[Aa]udit|[Pp]en\s+[Tt]esting'
+title = '^([Cc]onduct|[Ii]mprove)\s+[Ss]ecurity\s+[Aa]udit|[Pp]en\s+[Tt]esting'
 
 [[changelog.autolabeler]]
 label = "state-management"
-regex = '^([Rr]efactor)\s+[Ss]tate\s+[Mm]anagement'
+title = '^([Rr]efactor)\s+[Ss]tate\s+[Mm]anagement'
 
 [[changelog.autolabeler]]
 label = "progressive-enhancement"
-regex = '^([Ii]mplement|[Ii]mprove)\s+[Pp]rogressive\s+[Ee]nhancement'
+title = '^([Ii]mplement|[Ii]mprove)\s+[Pp]rogressive\s+[Ee]nhancement'
 
 [[changelog.autolabeler]]
 label = "browser-compatibility"
-regex = '^([Uu]pdate|[Ii]mprove)\s+[Bb]rowser\s+[Cc]ompatibility'
+title = '^([Uu]pdate|[Ii]mprove)\s+[Bb]rowser\s+[Cc]ompatibility'
 
 [[changelog.autolabeler]]
 label = "multilingual"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Mm]ultilingual\s+[Ss]upport'
+title = '^([Aa]dd|[Ii]mprove)\s+[Mm]ultilingual\s+[Ss]upport'
 
 [[changelog.autolabeler]]
 label = "analytics-reporting"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Aa]nalytics|[Rr]eporting'
+title = '^([Aa]dd|[Ii]mprove)\s+[Aa]nalytics|[Rr]eporting'
 
 [[changelog.autolabeler]]
 label = "api-rate-limit"
-regex = '^([Ii]mplement|[Uu]pdate)\s+[Aa]pi\s+[Rr]ate\s+[Ll]imiting'
+title = '^([Ii]mplement|[Uu]pdate)\s+[Aa]pi\s+[Rr]ate\s+[Ll]imiting'
 
 [[changelog.autolabeler]]
 label = "cdn"
-regex = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]dn'
+title = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]dn'
 
 [[changelog.autolabeler]]
 label = "security-headers"
-regex = '^([Aa]dd|[Ii]mplement)\s+[Ss]ecurity\s+[Hh]eaders'
+title = '^([Aa]dd|[Ii]mplement)\s+[Ss]ecurity\s+[Hh]eaders'
 
 [[changelog.autolabeler]]
 label = "privacy-enhancements"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Uu]ser\s+[Pp]rivacy'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Uu]ser\s+[Pp]rivacy'
 
 [[changelog.autolabeler]]
 label = "env-vars"
-regex = '^([Mm]anage|[Uu]pdate)\s+[Ee]nvironmental\s+[Vv]ariables'
+title = '^([Mm]anage|[Uu]pdate)\s+[Ee]nvironmental\s+[Vv]ariables'
 
 [[changelog.autolabeler]]
 label = "sitemap"
-regex = '^([Gg]enerate|[Mm]anage)\s+[Ss]itemap'
+title = '^([Gg]enerate|[Mm]anage)\s+[Ss]itemap'
 
 [[changelog.autolabeler]]
 label = "feature-flags"
-regex = '^([Mm]anage|[Uu]pdate)\s+[Ff]eature\s+[Ff]lags'
+title = '^([Mm]anage|[Uu]pdate)\s+[Ff]eature\s+[Ff]lags'
 
 [[changelog.autolabeler]]
 label = "cd-pipeline"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Cc]ontinuous\s+[Dd]eployment'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Cc]ontinuous\s+[Dd]eployment'
 
 [[changelog.autolabeler]]
 label = "testing-frameworks"
-regex = '^([Aa]dd|[Ii]mprove)\s+[Aa]utomated\s+[Tt]esting\s+[Ff]rameworks'
+title = '^([Aa]dd|[Ii]mprove)\s+[Aa]utomated\s+[Tt]esting\s+[Ff]rameworks'
 
 [[changelog.autolabeler]]
 label = "dynamic-content"
-regex = '^([Ii]mprove|[Uu]pdate)\s+[Dd]ynamic\s+[Cc]ontent\s+[Dd]elivery'
+title = '^([Ii]mprove|[Uu]pdate)\s+[Dd]ynamic\s+[Cc]ontent\s+[Dd]elivery'
 
 [[changelog.autolabeler]]
 label = "graphql"
-regex = '^([Ii]mplement|[Uu]pdate)\s+[Gg]raphQL\s+[Aa]pi'
+title = '^([Ii]mplement|[Uu]pdate)\s+[Gg]raphQL\s+[Aa]pi'
 
 [[changelog.autolabeler]]
 label = "websockets"
-regex = '^([Ii]mplement|[Uu]se)\s+[Ww]ebSockets'
+title = '^([Ii]mplement|[Uu]se)\s+[Ww]ebSockets'
 
 [[changelog.autolabeler]]
 label = "pwa-optimization"
-regex = '^([Oo]ptimize|[Ii]mprove)\s+[Pp]rogressive\s+[Ww]eb\s+[Aa]pps'
+title = '^([Oo]ptimize|[Ii]mprove)\s+[Pp]rogressive\s+[Ww]eb\s+[Aa]pps'
 
 [[changelog.autolabeler]]
 label = "third-party-apis"
-regex = '^([Ii]ntegrate|[Uu]pdate)\s+[Tt]hird\s-[Pp]arty\s+[Aa]pis'
+title = '^([Ii]ntegrate|[Uu]pdate)\s+[Tt]hird\s-[Pp]arty\s+[Aa]pis'
 
 [[changelog.autolabeler]]
 label = "modularization"
-regex = '^([Mm]odularize|[Rr]efactor)\s+[Cc]odebase'
+title = '^([Mm]odularize|[Rr]efactor)\s+[Cc]odebase'
 
 [[changelog.autolabeler]]
 label = "data-encryption"
-regex = '^([Ii]mprove|[Aa]dd)\s+[Dd]ata\s+[Ee]ncryption'
+title = '^([Ii]mprove|[Aa]dd)\s+[Dd]ata\s+[Ee]ncryption'
 
 [[changelog.autolabeler]]
 label = "mobile-performance"
-regex = '^([Oo]ptimize|[Ii]mprove)\s+[Mm]obile\s+[Aa]pp\s+[Pp]erformance'
+title = '^([Oo]ptimize|[Ii]mprove)\s+[Mm]obile\s+[Aa]pp\s+[Pp]erformance'
 
 [[changelog.autolabeler]]
 label = "code-formatting"
-regex = '^([Ii]mplement|[Uu]se)\s+[Aa]utomated\s+[Cc]ode\s+[Ff]ormatting'
+title = '^([Ii]mplement|[Uu]se)\s+[Aa]utomated\s+[Cc]ode\s+[Ff]ormatting'
 
 [[changelog.autolabeler]]
 label = "misc"
-regex = '.' # Matches any characters
+title = '.' # Matches any characters
 
