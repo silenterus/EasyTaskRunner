@@ -5,7 +5,6 @@ using Xunit.Abstractions;
 namespace EasyTaskRunner.Tests.TaskRunner
 {
 
-
     public class TaskRunnerTests
     {
 
