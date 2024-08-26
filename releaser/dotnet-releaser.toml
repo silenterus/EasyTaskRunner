@@ -1,7 +1,7 @@
 profile = "custom"
 artifacts_folder = "../compiled"
 [msbuild]
-project = "../../EasyTaskRunner.sln"
+project = "../EasyTaskRunner.sln"
 configuration = "Release"
 
 [msbuild.properties]
