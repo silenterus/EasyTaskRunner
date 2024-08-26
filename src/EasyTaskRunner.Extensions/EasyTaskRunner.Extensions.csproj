@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\Props\EasyTaskRunner.props" />
   <PropertyGroup>
@@ -6,6 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyTaskRunner.Data\EasyTaskRunner.Data.csproj" />
-
   </ItemGroup>
+
 </Project>
