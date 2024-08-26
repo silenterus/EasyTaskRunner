@@ -2,7 +2,7 @@
 using System.Text;
 using EasyTaskRunner.Data.Enums;
 using EasyTaskRunner.Data.Interfaces;
-namespace EasyTaskRunner.Core
+namespace EasyTaskRunner
 {
 
     public class TaskRunnerManager

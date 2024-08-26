@@ -1,7 +1,7 @@
 profile = "custom"
 artifacts_folder = "../compiled"
 [msbuild]
-project = "../EasyTaskRunner.sln"
+project = "../EasyTaskRunner_NoTests.sln"
 configuration = "Release"
 
 [msbuild.properties]
@@ -26,27 +26,27 @@ branches = ["main"]
 
 # Create zip files only for Windows platforms
 [[pack]]
-publish = true
+publish = false
 rid = ["win-x64", "win-arm", "win-arm64"]
 kinds = ["zip"]
 # Default targets for Linux/Ubuntu Debian compatible distro with debian and tar packages
 [[pack]]
-publish = true
+publish = false
 rid = ["linux-x64", "linux-arm", "linux-arm64"]
 kinds = ["deb", "tar"]
 # Default targets for Linux/Redhat compatible distro with rpm and tar packages
 [[pack]]
-publish = true
+publish = false
 rid = ["rhel-x64"]
 kinds = ["rpm", "tar"]
 # Default targets for macOS, only tar files for this platform
 [[pack]]
-publish = true
+publish = false
 rid = ["osx-x64", "osx-arm64"]
 kinds = ["tar"]
 
 [nuget]
-publish = true
+publish = false
 source = "https://api.nuget.org/v3/index.json"
 
 [brew]

@@ -40,15 +40,6 @@
 
   </ItemGroup>
 
-  <ItemGroup>
-
-    <ProjectReference Include="..\..\..\Omni.Datatypes\src\Omni.Datatypes\Omni.Datatypes.csproj" />
-    <ProjectReference Include="..\..\..\Omni.Extensions\src\Omni.Extensions\Omni.Extensions.csproj" />
-    <ProjectReference Include="..\..\..\Omni.Core\src\Omni.Core\Omni.Core.csproj" />
-
-
-
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MinVer" Version="4.2.0">

@@ -15,17 +15,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
-    <PackAsTool>true</PackAsTool>
+    <PackAsTool>false</PackAsTool>
 
     <GenerateNuspec>true</GenerateNuspec>
-    <BaseOutputPath Condition="'$(DotNetReleaserBinCi)' == 'true'">bin-ci</BaseOutputPath>
-    <RootNamespace>omni__penetration</RootNamespace>
-    <AssemblyName>omni__penetration</AssemblyName>
+ 
     <VersionPrefix>0.0.1</VersionPrefix>
     <OmniVersion>0.0.1</OmniVersion>
-    <ProjectCamelCaseNameAssemblyVersion>0.0.1.0</ProjectCamelCaseNameAssemblyVersion>
-    <AssemblyVersion>$(ProjectCamelCaseNameAssemblyVersion)</AssemblyVersion>
-    <FileVersion>$(ProjectCamelCaseNameAssemblyVersion)</FileVersion>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <FileVersion>0.0.1.0</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -36,11 +33,11 @@
     <ApplicationIcon>..\..\assets\EasyTaskRunner.ico</ApplicationIcon>
     <PackageIcon>EasyTaskRunner.png</PackageIcon>
 
-    <Description>This is a default project description</Description>
+    <Description>Simple Task Runner mainly for SqlAutoGen</Description>
     <Copyright>Harold-Andreas Zellner</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Authors>Harold-Andreas Zellner</Authors>
-    <PackageTags>FirstTag;SecondTag</PackageTags>
+    <PackageTags>Task;Runner</PackageTags>
     <PackageProjectUrl>https://github.com/silenterus/EasyTaskRunner</PackageProjectUrl>
 
   </PropertyGroup>
@@ -50,15 +47,11 @@
     <Copyright>Harold-Andreas Zellner</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageReleaseNotes>https://github.com/silenterus/$(AssemblyName)/blob/master/CHANGELOG.md</PackageReleaseNotes>
-    <PackageProjectUrl>https://silenterus.github.io/OmniTool/</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/silenterus/EasyTaskRunner</PackageProjectUrl>
     <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
-
-  <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.9.2-ci-210" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Visible="false" Include="..\..\README.md" Pack="true" PackagePath="\" />
@@ -86,18 +79,7 @@
   
   <ItemGroup>
 
-    <!--
-            <None Include="bin\Release\$(TargetFramework)\win-x64\publish\Omni.exe" Pack="true" PackagePath="tools\win-x64\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\Omni.exe')" />
-            <None Include="bin\Release\$(TargetFramework)\win-x86\publish\Omni.exe" Pack="true" PackagePath="tools\win-x86\" Condition="Exists('bin\Release\$(TargetFramework)\win-x86\publish\Omni.exe')" />
-            <None Include="bin\Release\$(TargetFramework)\linux-x64\publish\Omni" Pack="true" PackagePath="tools\linux-x64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-x64\publish\Omni')" />
-            <None Include="bin\Release\$(TargetFramework)\linux-arm\publish\Omni" Pack="true" PackagePath="tools\linux-arm\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm\publish\Omni')" />
-            <None Include="bin\Release\$(TargetFramework)\linux-arm64\publish\Omni" Pack="true" PackagePath="tools\linux-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm64\publish\Omni')" />
-            <None Include="bin\Release\$(TargetFramework)\osx-x64\publish\Omni" Pack="true" PackagePath="tools\osx-x64\" Condition="Exists('bin\Release\$(TargetFramework)\osx-x64\publish\Omni')" />
-            <None Include="bin\Release\$(TargetFramework)\osx-arm64\publish\Omni" Pack="true" PackagePath="tools\osx-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\osx-arm64\publish\Omni')" />
-            <None Include="bin\Release\$(TargetFramework)\win-arm64\publish\Omni.exe" Pack="true" PackagePath="tools\win-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\win-arm64\publish\Omni.exe')" />
-            <None Include="bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\Omni" Pack="true" PackagePath="tools\linux-bionic-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\Omni')" />
-    -->
-
+   
 
     <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="tools\win-x64\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
     <None Include="bin\Release\$(TargetFramework)\win-x86\publish\**\*.*" Pack="true" PackagePath="tools\win-x86\" Condition="Exists('bin\Release\$(TargetFramework)\win-x86\publish\')" />

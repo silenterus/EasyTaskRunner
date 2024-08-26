@@ -30,3 +30,5 @@ jobs:
       run: |
         dotnet tool install -g dotnet-releaser
         dotnet-releaser run --nuget-token "${{secrets.NUGET_TOKEN}}" --github-token "${{secrets.GITHUB_TOKEN}}" releaser/dotnet-releaser.toml
+
+        dotnet-releaser build releaser/dotnet-releaser.toml
