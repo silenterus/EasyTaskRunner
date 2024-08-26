@@ -1,0 +1,1035 @@
+profile = "custom"
+artifacts_folder = "../compiled"
+[msbuild]
+project = "../../EasyTaskRunner.sln"
+configuration = "Release"
+
+[msbuild.properties]
+PublishTrimmed = true
+PublishReadyToRun = true
+CopyOutputSymbolsToPublishDirectory = false
+SkipCopyingSymbolsToOutputDirectory = true
+
+[coverage]
+enable = false
+[coveralls]
+publish = false
+
+
+[github]
+publish = true
+user = "silenterus"
+repo = "EasyTaskRunner"
+base = "https://github.com"
+version_prefix = "v"
+branches = ["main"]
+
+# Create zip files only for Windows platforms
+[[pack]]
+publish = true
+rid = ["win-x64", "win-arm", "win-arm64"]
+kinds = ["zip"]
+# Default targets for Linux/Ubuntu Debian compatible distro with debian and tar packages
+[[pack]]
+publish = true
+rid = ["linux-x64", "linux-arm", "linux-arm64"]
+kinds = ["deb", "tar"]
+# Default targets for Linux/Redhat compatible distro with rpm and tar packages
+[[pack]]
+publish = true
+rid = ["rhel-x64"]
+kinds = ["rpm", "tar"]
+# Default targets for macOS, only tar files for this platform
+[[pack]]
+publish = true
+rid = ["osx-x64", "osx-arm64"]
+kinds = ["tar"]
+
+[nuget]
+publish = true
+source = "https://api.nuget.org/v3/index.json"
+
+[brew]
+publish = false
+
+[scoop]
+publish = false
+
+[changelog]
+pull_request_change_template = "- {{ pr.title }} (PR #{{ pr.number }}) by @{{ properties.author }}"
+commit_change_template = "- {{ commit.title }} ({{ commit.sha}}) by @{{ properties.author }}"
+body_template = '''
+
+# {{ properties.changes_pre_title }} {{ properties.hello_number }}
+
+{{ changes }}
+
+**Full Changelog**: {{ url_full_changelog_compare_changes }}
+'''
+
+[changelog.template_properties]
+changes_pre_title = ""
+hello_number = ""
+author = "silenterus"
+
+
+
+[[changelog.category]]
+title = "## 🚨 Breaking Changes"
+labels = ["breaking-change", "category: breaking-change"]
+order = 10
+
+[[changelog.category]]
+title = "## ✨ New Features"
+labels = ["new-feature", "feature", "category: feature"]
+order = 20
+
+[[changelog.category]]
+title = "## 🐛 Bug Fixes"
+labels = ["bugfix", "fix", "bug", "category: bug"]
+order = 30
+
+[[changelog.category]]
+title = "## 🚀 Enhancements"
+labels = ["enhancement", "refactor", "performance", "category: performance", "category: enhancement"]
+order = 40
+
+[[changelog.category]]
+title = "## 🧰 Maintenance"
+labels = ["maintenance", "ci", "category: ci"]
+order = 50
+
+[[changelog.category]]
+title = "## 🏭 Tests"
+labels = ["tests", "test", "category: tests"]
+order = 60
+
+[[changelog.category]]
+title = "## 🛠 Examples"
+labels = ["examples", "samples", "category: samples", "category: examples"]
+order = 70
+
+[[changelog.category]]
+title = "## 📚 Documentation"
+labels = ["documentation", "doc", "category: documentation", "category: doc"]
+order = 80
+
+[[changelog.category]]
+title = "## 🌎 Accessibility"
+labels = ["translations", "accessibility", "category: accessibility"]
+order = 90
+
+[[changelog.category]]
+title = "## 📦 Dependencies"
+labels = ["dependencies", "deps", "category: dependencies"]
+order = 100
+
+
+[[changelog.category]]
+title = "## ⚙️ Configuration Changes"
+labels = ["config", "category: config"]
+order = 100
+
+[[changelog.category]]
+title = "## 🗄 Data Migration"
+labels = ["migration", "data-migration", "category: migration"]
+order = 110
+
+[[changelog.category]]
+title = "## 🚩 Feature Flags"
+labels = ["feature-flag", "category: feature-flag"]
+order = 120
+
+[[changelog.category]]
+title = "## 📈 SEO Improvements"
+labels = ["seo", "category: seo"]
+order = 130
+
+[[changelog.category]]
+title = "## ♿ Accessibility Enhancements"
+labels = ["a11y", "category: accessibility"]
+order = 140
+
+[[changelog.category]]
+title = "## 🛠 Build System"
+labels = ["build", "category: build"]
+order = 150
+
+[[changelog.category]]
+title = "## 🔄 CI Updates"
+labels = ["ci", "category: ci"]
+order = 160
+
+[[changelog.category]]
+title = "## 🚀 CD Enhancements"
+labels = ["cd", "category: cd"]
+order = 170
+
+[[changelog.category]]
+title = "## 🗃 Database Optimization"
+labels = ["database", "optimization", "category: database"]
+order = 180
+
+[[changelog.category]]
+title = "## 🐞 Error Handling"
+labels = ["error-handling", "category: error-handling"]
+order = 190
+
+[[changelog.category]]
+title = "## | Logging Enhancements"
+labels = ["logging", "category: logging"]
+order = 200
+
+[[changelog.category]]
+title = "## 📊 Monitoring & Observability"
+labels = ["monitoring", "observability", "category: monitoring"]
+order = 210
+
+[[changelog.category]]
+title = "## ⚖️ Scalability Enhancements"
+labels = ["scalability", "category: scalability"]
+order = 220
+
+[[changelog.category]]
+title = "## 🔒 Security Patches"
+labels = ["security-patch", "category: security-patch"]
+order = 230
+
+[[changelog.category]]
+title = "## 🧹 Code Cleanup"
+labels = ["cleanup", "category: cleanup"]
+order = 240
+
+[[changelog.category]]
+title = "## 🌐 API Enhancements"
+labels = ["api-enhancement", "category: api-enhancement"]
+order = 250
+
+[[changelog.category]]
+title = "## 🎨 UX Improvements"
+labels = ["ux", "category: ux"]
+order = 260
+
+[[changelog.category]]
+title = "## 🌈 Theme and Styling"
+labels = ["theme", "styling", "category: styling"]
+order = 270
+
+[[changelog.category]]
+title = "## 🛠 Framework Upgrades"
+labels = ["framework-upgrade", "category: framework"]
+order = 280
+
+[[changelog.category]]
+title = "## 🚀 Deployment Optimization"
+labels = ["deployment", "optimization", "category: deployment"]
+order = 290
+
+[[changelog.category]]
+title = "## 🔌 Third-party Integrations"
+labels = ["integration", "third-party", "category: integration"]
+order = 300
+
+[[changelog.category]]
+title = "## 📱 Mobile Enhancements"
+labels = ["mobile", "category: mobile"]
+order = 310
+
+[[changelog.category]]
+title = "## 🔄 DevOps Practices"
+labels = ["devops", "category: devops"]
+order = 320
+
+[[changelog.category]]
+title = "## 🧪 Testing Enhancements"
+labels = ["testing", "category: testing"]
+order = 330
+
+[[changelog.category]]
+title = "## 📚 Documentation Updates"
+labels = ["documentation-update", "category: documentation"]
+order = 340
+
+[[changelog.category]]
+title = "## 🌍 i18n Improvements"
+labels = ["i18n", "category: i18n"]
+order = 350
+
+[[changelog.category]]
+title = "## 📈 Performance Monitoring"
+labels = ["performance-monitoring", "category: monitoring"]
+order = 360
+
+[[changelog.category]]
+title = "## ✅ Code Standards"
+labels = ["code-standards", "category: standards"]
+order = 370
+
+[[changelog.category]]
+title = "## 🔐 Security Compliance"
+labels = ["security-compliance", "category: compliance"]
+order = 380
+
+[[changelog.category]]
+title = "## 🤖 Code Generation"
+labels = ["code-generation", "category: codegen"]
+order = 390
+
+[[changelog.category]]
+title = "## 🏚 Legacy Refactoring"
+labels = ["legacy-refactoring", "category: refactoring"]
+order = 400
+
+[[changelog.category]]
+title = "## ♿ Accessibility Testing"
+labels = ["accessibility-testing", "category: testing"]
+order = 410
+
+[[changelog.category]]
+title = "## ☁️ Cloud Integration"
+labels = ["cloud", "integration", "category: cloud"]
+order = 420
+
+[[changelog.category]]
+title = "## 🧠 AI/ML Enhancements"
+labels = ["ai", "ml", "category: ai-ml"]
+order = 430
+
+[[changelog.category]]
+title = "## ⛓ Blockchain Integration"
+labels = ["blockchain", "category: blockchain"]
+order = 440
+
+[[changelog.category]]
+title = "## 🕶 VR/AR Features"
+labels = ["vr", "ar", "category: vr-ar"]
+order = 450
+
+[[changelog.category]]
+title = "## 📱 Social Media Integration"
+labels = ["social-media", "category: social-media"]
+order = 460
+
+[[changelog.category]]
+title = "## 💳 Payment Gateway Integration"
+labels = ["payment", "gateway", "category: payment"]
+order = 470
+
+[[changelog.category]]
+title = "## 🛡 Data Privacy Enhancements"
+labels = ["privacy", "data-privacy", "category: privacy"]
+order = 480
+
+[[changelog.category]]
+title = "## 🔑 Authentication & Authorization"
+labels = ["auth", "category: auth"]
+order = 490
+
+[[changelog.category]]
+title = "## ⚡ Real-time Features"
+labels = ["real-time", "category: real-time"]
+order = 500
+
+[[changelog.category]]
+title = "## 💬 Chatbot Integration"
+labels = ["chatbot", "category: chatbot"]
+order = 510
+
+[[changelog.category]]
+title = "## 🌐 IoT Capabilities"
+labels = ["iot", "category: iot"]
+order = 520
+
+[[changelog.category]]
+title = "## 🏗 Microservices Architecture"
+labels = ["microservices", "category: microservices"]
+order = 530
+
+[[changelog.category]]
+title = "## ☁️ Serverless Architecture"
+labels = ["serverless", "category: serverless"]
+order = 540
+
+[[changelog.category]]
+title = "## 📊 Big Data & Analytics"
+labels = ["big-data", "analytics", "category: data-analytics"]
+order = 550
+
+[[changelog.category]]
+title = "## 🛒 E-commerce Features"
+labels = ["e-commerce", "category: e-commerce"]
+order = 560
+
+[[changelog.category]]
+title = "## 📝 CMS Integration"
+labels = ["cms", "category: cms"]
+order = 570
+
+[[changelog.category]]
+title = "## 🔐 API Security Enhancements"
+labels = ["api-security", "category: security"]
+order = 580
+
+[[changelog.category]]
+title = "## 🔄 Cross-Platform Development"
+labels = ["cross-platform", "category: cross-platform"]
+order = 590
+
+[[changelog.category]]
+title = "## 📱 PWA Features"
+labels = ["pwa", "category: pwa"]
+order = 600
+
+[[changelog.category]]
+title = "## 🔏 Cryptography Enhancements"
+labels = ["cryptography", "category: security"]
+order = 610
+
+[[changelog.category]]
+title = "## 👀 Code Review Improvements"
+labels = ["code-review", "category: code-review"]
+order = 620
+
+[[changelog.category]]
+title = "## 🚀 User Onboarding Enhancements"
+labels = ["onboarding", "category: onboarding"]
+order = 630
+
+[[changelog.category]]
+title = "## 📈 Data Visualization Enhancements"
+labels = ["data-visualization", "category: visualization"]
+order = 640
+
+[[changelog.category]]
+title = "## 🛠 Tooling & Workflow Automation"
+labels = ["tooling", "automation", "category: tooling"]
+order = 650
+
+[[changelog.category]]
+title = "## 🏢 Multi-Tenancy Support"
+labels = ["multi-tenancy", "category: architecture"]
+order = 660
+
+[[changelog.category]]
+title = "## 📜 Compliance & Regulatory Updates"
+labels = ["compliance", "regulatory", "category: compliance"]
+order = 670
+
+[[changelog.category]]
+title = "## 🏎 Performance Benchmarking"
+labels = ["benchmarking", "category: performance"]
+order = 680
+
+[[changelog.category]]
+title = "## 📧 Email Integration & Notifications"
+labels = ["email", "notifications", "category: integration"]
+order = 690
+
+[[changelog.category]]
+title = "## 🧬 Dependency Management"
+labels = ["dependency-management", "category: dependencies"]
+order = 700
+
+[[changelog.category]]
+title = "## 💪 Load & Stress Testing"
+labels = ["load-testing", "stress-testing", "category: testing"]
+order = 710
+
+[[changelog.category]]
+title = "## 🗑 Feature Decommissioning"
+labels = ["decommission", "category: deprecation"]
+order = 720
+
+[[changelog.category]]
+title = "## 🌑 Dark Mode Support"
+labels = ["dark-mode", "category: ui-ux"]
+order = 730
+
+[[changelog.category]]
+title = "## 🖼 SVG Enhancements"
+labels = ["svg", "category: graphics"]
+order = 740
+
+[[changelog.category]]
+title = "## ♿ Web Accessibility Compliance"
+labels = ["wcag", "accessibility", "category: accessibility"]
+order = 750
+
+[[changelog.category]]
+title = "## 📊 SEO Updates"
+labels = ["seo-updates", "category: seo"]
+order = 760
+
+[[changelog.category]]
+title = "## 📱 Responsive Design Improvements"
+labels = ["responsive-design", "category: design"]
+order = 770
+
+[[changelog.category]]
+title = "## 🔐 Security Audit & Pen Testing"
+labels = ["security-audit", "pen-testing", "category: security"]
+order = 780
+
+[[changelog.category]]
+title = "## 🔄 State Management Refactoring"
+labels = ["state-management", "refactoring", "category: architecture"]
+order = 790
+
+[[changelog.category]]
+title = "## 🌱 Progressive Enhancement"
+labels = ["progressive-enhancement", "category: front-end"]
+order = 800
+
+[[changelog.category]]
+title = "## 🌐 Browser Compatibility Updates"
+labels = ["browser-compatibility", "category: compatibility"]
+order = 810
+
+[[changelog.category]]
+title = "## 🌍 Multilingual Support"
+labels = ["multilingual", "i18n", "category: internationalization"]
+order = 820
+
+[[changelog.category]]
+title = "## 📊 Analytics & Reporting Features"
+labels = ["analytics", "reporting", "category: features"]
+order = 830
+
+[[changelog.category]]
+title = "## 🚦 API Rate Limiting"
+labels = ["api-rate-limit", "category: api"]
+order = 840
+
+[[changelog.category]]
+title = "## 🌐 CDN Integration"
+labels = ["cdn", "category: performance"]
+order = 850
+
+[[changelog.category]]
+title = "## 🔒 Security Headers Implementation"
+labels = ["security-headers", "category: security"]
+order = 860
+
+[[changelog.category]]
+title = "## 🛡 User Privacy Enhancements"
+labels = ["privacy-enhancements", "category: privacy"]
+order = 870
+
+[[changelog.category]]
+title = "## 🌱 Environmental Variables Management"
+labels = ["env-vars", "category: devops"]
+order = 880
+
+[[changelog.category]]
+title = "## 🗺 Sitemap Generation & Management"
+labels = ["sitemap", "category: seo"]
+order = 890
+
+[[changelog.category]]
+title = "## 🚩 Feature Flag Management"
+labels = ["feature-flags", "category: deployment"]
+order = 900
+
+[[changelog.category]]
+title = "## 🚀 CD Pipeline Enhancements"
+labels = ["cd-pipeline", "category: ci-cd"]
+order = 910
+
+[[changelog.category]]
+title = "## 🧪 Automated Testing Frameworks"
+labels = ["testing-frameworks", "category: testing"]
+order = 920
+
+[[changelog.category]]
+title = "## 📡 Dynamic Content Delivery"
+labels = ["dynamic-content", "category: performance"]
+order = 930
+
+[[changelog.category]]
+title = "## 🌐 GraphQL API Implementation"
+labels = ["graphql", "category: api"]
+order = 940
+
+[[changelog.category]]
+title = "## ⚡ WebSockets for Real-Time Communication"
+labels = ["websockets", "category: real-time"]
+order = 950
+
+[[changelog.category]]
+title = "## 📱 PWA Optimization"
+labels = ["pwa-optimization", "category: pwa"]
+order = 960
+
+[[changelog.category]]
+title = "## 🔌 Third-Party API Integrations"
+labels = ["third-party-apis", "category: integration"]
+order = 970
+
+[[changelog.category]]
+title = "## 🧩 Codebase Modularization"
+labels = ["modularization", "category: architecture"]
+order = 980
+
+[[changelog.category]]
+title = "## 🔒 Data Encryption Enhancements"
+labels = ["data-encryption", "category: security"]
+order = 990
+
+[[changelog.category]]
+title = "## 📱 Mobile App Performance Optimization"
+labels = ["mobile-performance", "category: performance"]
+order = 1000
+
+[[changelog.category]]
+title = "## 🎨 Automated Code Formatting"
+labels = ["code-formatting", "category: code-quality"]
+order = 1010
+
+[[changelog.category]]
+title = "## 🧰 Misc"
+labels = ["misc", "category: misc"]
+order = 1020
+
+
+[[changelog.autolabeler]]
+label = "breaking-change"
+title = '^[Bb]reaking\s+[Cc]hange'
+
+# Matches any title starting by e.g `Add/Improve/Fix/Update ci`
+# and attach to the PR/Commit the `maintenance` label
+[[changelog.autolabeler]]
+label = "maintenance"
+title = '^(([Aa]dd)|([Ii]mprove)|([Ff]ix)|([Uu]pdate))\s+ci\b'
+
+# Matches any title starting by e.g `Add/Improve/Fix/Update doc`
+# and attach to the PR/Commit the `documentation` label
+[[changelog.autolabeler]]
+label = "documentation"
+title = '^(([Aa]dd)|([Ii]mprove)|([Ff]ix)|([Uu]pdate))\s+[Dd]oc'
+
+# Matches any title starting by e.g `Add/Improve/Fix/Update test`
+# and attach to the PR/Commit the `tests` label
+[[changelog.autolabeler]]
+label = "tests"
+title = '^(([Aa]dd)|([Ii]mprove)|([Ff]ix)|([Uu]pdate))\s+[Tt]est'
+
+# Matches any title starting by e.g `Add/Improve/Fix/Update example`
+# and attach to the PR/Commit the `examples` label
+[[changelog.autolabeler]]
+label = "examples"
+title = '^(([Aa]dd)|([Ii]mprove)|([Ff]ix)|([Uu]pdate))\s+[Ee]xample'
+
+# Matches any title starting by e.g `Add/Improve/Fix/Update accessibility`
+# and attach to the PR/Commit the `accessibility` label
+[[changelog.autolabeler]]
+label = "accessibility"
+title = [
+  '^(([Aa]dd)|([Ii]mprove)|([Ff]ix)|([Uu]pdate))\s+[Aa]ccessibility',
+  '^(([Aa]dd)|([Ii]mprove)|([Ff]ix)|([Uu]pdate))\s+[Tt]ranslation',
+]
+
+# Matches any title starting by e.g `Fix/Bugfix`
+# and attach to the PR/Commit the `bugfix` label
+[[changelog.autolabeler]]
+label = "bugfix"
+title = '^(([Ff]ix)|([Bb]ugfix))'
+
+# Matches any title starting by e.g `Add`
+# and attach to the PR/Commit the `feature` label
+[[changelog.autolabeler]]
+label = "feature"
+title = '^([Aa]dd)\s+'
+
+# Matches any title starting by e.g `Enhance`
+# and attach to the PR/Commit the `enhancement` label
+[[changelog.autolabeler]]
+label = "enhancement"
+title = [
+  '^(([Ee]nhance)|([Rr]efactor))',
+  '^([Ii]mprove)\s+[Pp]erf'
+]
+
+# Matches any title starting by e.g `Add`
+# and attach to the PR/Commit the `dependencies` label
+[[changelog.autolabeler]]
+label = "dependencies"
+title = [
+  '^([Uu]pdate)\s+[Dd]epend',
+  '^([Bb]ump)\s+\w{3,}' # Don't match e.g `Bump to`
+]
+
+# Matches anything left that hasn't been matched by previous auto-labelers
+# and attach to the PR/Commit the `misc` label
+
+[[changelog.autolabeler]]
+label = "config"
+regex = '^([Uu]pdate)\s+[Cc]onfig'
+
+[[changelog.autolabeler]]
+label = "migration"
+regex = '^([Aa]dd|[Uu]pdate)\s+[Mm]igration'
+
+[[changelog.autolabeler]]
+label = "feature-flag"
+regex = '^([Aa]dd|[Uu]pdate)\s+[Ff]eature\s+[Ff]lag'
+
+[[changelog.autolabeler]]
+label = "seo"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Ss]eo'
+
+[[changelog.autolabeler]]
+label = "a11y"
+regex = '^([Ii]mprove|[Aa]dd)\s+[Aa]ccessibility'
+
+[[changelog.autolabeler]]
+label = "build"
+regex = '^([Uu]pdate|[Ff]ix)\s+[Bb]uild'
+
+[[changelog.autolabeler]]
+label = "ci"
+regex = '^([Uu]pdate)\s+ci'
+
+[[changelog.autolabeler]]
+label = "cd"
+regex = '^([Uu]pdate)\s+cd'
+
+[[changelog.autolabeler]]
+label = "database"
+regex = '^([Oo]ptimize)\s+[Dd]atabase'
+
+[[changelog.autolabeler]]
+label = "error-handling"
+regex = '^([Ii]mprove|[Aa]dd)\s+[Ee]rror\s+[Hh]andling'
+
+[[changelog.autolabeler]]
+label = "logging"
+regex = '^([Uu]pdate|[Aa]dd)\s+[Ll]ogging'
+
+#[[changelog.autolabeler]]
+#label = "monitoring"
+#regex = `'^([Aa]dd|[Uu]pdate
+
+[[changelog.autolabeler]]
+label = "scalability"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Ss]calability'
+
+[[changelog.autolabeler]]
+label = "security-patch"
+regex = '^([Ss]ecurity\s+[Pp]atch)'
+
+[[changelog.autolabeler]]
+label = "cleanup"
+regex = '^([Cc]leanup)'
+
+[[changelog.autolabeler]]
+label = "api-enhancement"
+regex = '^([Aa]dd|[Uu]pdate)\s+[Aa]pi'
+
+[[changelog.autolabeler]]
+label = "ux"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Uu]x'
+
+[[changelog.autolabeler]]
+label = "theme"
+regex = '^([Uu]pdate|[Aa]dd)\s+[Tt]heme|[Ss]tyling'
+
+[[changelog.autolabeler]]
+label = "framework-upgrade"
+regex = '^([Uu]pgrade)\s+[Ff]ramework'
+
+[[changelog.autolabeler]]
+label = "deployment"
+regex = '^([Oo]ptimize)\s+[Dd]eployment'
+
+[[changelog.autolabeler]]
+label = "integration"
+regex = '^([Aa]dd|[Ii]ntegrate)\s+with'
+
+[[changelog.autolabeler]]
+label = "mobile"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Mm]obile'
+
+[[changelog.autolabeler]]
+label = "devops"
+regex = '^([Ii]mplement|[Ii]mprove)\s+[Dd]evOps'
+
+[[changelog.autolabeler]]
+label = "testing"
+regex = '^([Ii]mprove|[Aa]dd)\s+[Tt]ests?'
+
+[[changelog.autolabeler]]
+label = "documentation-update"
+regex = '^([Uu]pdate)\s+[Dd]oc'
+
+[[changelog.autolabeler]]
+label = "i18n"
+regex = '^([Ii]mprove|[Aa]dd)\s+i18n'
+
+[[changelog.autolabeler]]
+label = "performance-monitoring"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Pp]erformance\s+[Mm]onitoring'
+
+[[changelog.autolabeler]]
+label = "code-standards"
+regex = '^([Ee]nforce)\s+[Cc]ode\s+[Ss]tandards'
+
+[[changelog.autolabeler]]
+label = "security-compliance"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Ss]ecurity\s+[Cc]ompliance'
+
+[[changelog.autolabeler]]
+label = "code-generation"
+regex = '^([Aa]dd|[Gg]enerate)\s+[Cc]ode'
+
+[[changelog.autolabeler]]
+label = "legacy-refactoring"
+regex = '^([Rr]efactor)\s+[Ll]egacy'
+
+[[changelog.autolabeler]]
+label = "accessibility-testing"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Aa]ccessibility\s+[Tt]esting'
+
+[[changelog.autolabeler]]
+label = "cloud"
+regex = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]loud'
+
+[[changelog.autolabeler]]
+label = "ai-ml"
+regex = '^([Ii]mprove|[Aa]dd)\s+[Aa][Ii]|[Mm][Ll]'
+
+[[changelog.autolabeler]]
+label = "blockchain"
+regex = '^([Aa]dd|[Ii]ntegrate)\s+[Bb]lockchain'
+
+[[changelog.autolabeler]]
+label = "vr-ar"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Vv][Rr]|[Aa][Rr]'
+
+[[changelog.autolabeler]]
+label = "social-media"
+regex = '^([Aa]dd|[Ii]ntegrate)\s+[Ss]ocial\s+[Mm]edia'
+
+[[changelog.autolabeler]]
+label = "payment"
+regex = '^([Aa]dd|[Ii]ntegrate)\s+[Pp]ayment\s+[Gg]ateway'
+
+[[changelog.autolabeler]]
+label = "privacy"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Pp]rivacy'
+
+[[changelog.autolabeler]]
+label = "auth"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Aa]uth'
+
+[[changelog.autolabeler]]
+label = "real-time"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Rr]eal\s+[Tt]ime'
+
+[[changelog.autolabeler]]
+label = "chatbot"
+regex = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]hatbot'
+
+[[changelog.autolabeler]]
+label = "iot"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Ii][Oo][Tt]'
+
+[[changelog.autolabeler]]
+label = "microservices"
+regex = '^([Aa]dd|[Uu]pdate)\s+[Mm]icroservices'
+
+[[changelog.autolabeler]]
+label = "serverless"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Ss]erverless'
+
+[[changelog.autolabeler]]
+label = "big-data"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Bb]ig\s+[Dd]ata|[Aa]nalytics'
+
+[[changelog.autolabeler]]
+label = "e-commerce"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Ee]-commerce'
+
+[[changelog.autolabeler]]
+label = "cms"
+regex = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]ms'
+
+[[changelog.autolabeler]]
+label = "api-security"
+regex = '^([Ii]mprove)\s+[Aa]pi\s+[Ss]ecurity'
+
+[[changelog.autolabeler]]
+label = "cross-platform"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Cc]ross-platform'
+
+[[changelog.autolabeler]]
+label = "pwa"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Pp]wa'
+
+[[changelog.autolabeler]]
+label = "cryptography"
+regex = '^([Ii]mprove|[Aa]dd)\s+[Cc]ryptography'
+
+[[changelog.autolabeler]]
+label = "code-review"
+regex = '^([Ii]mprove)\s+[Cc]ode\s+[Rr]eview'
+
+[[changelog.autolabeler]]
+label = "onboarding"
+regex = '^([Ii]mprove|[Aa]dd)\s+[Oo]nboarding'
+
+[[changelog.autolabeler]]
+label = "data-visualization"
+regex = '^([Ii]mprove|[Aa]dd)\s+[Dd]ata\s+[Vv]isualization'
+
+[[changelog.autolabeler]]
+label = "tooling"
+regex = '^([Ii]mprove|[Aa]dd)\s+[Tt]ooling|[Aa]utomation'
+
+[[changelog.autolabeler]]
+label = "multi-tenancy"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Mm]ulti\s*-[Tt]enancy'
+
+[[changelog.autolabeler]]
+label = "compliance"
+regex = '^([Uu]pdate|[Ii]mprove)\s+[Cc]ompliance|[Rr]egulatory'
+
+[[changelog.autolabeler]]
+label = "benchmarking"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Pp]erformance\s+[Bb]enchmarking'
+
+[[changelog.autolabeler]]
+label = "email"
+regex = '^([Aa]dd|[Ii]ntegrate)\s+[Ee]mail|[Nn]otifications'
+
+[[changelog.autolabeler]]
+label = "dependency-management"
+regex = '^([Uu]pdate|[Mm]anage)\s+[Dd]ependencies'
+
+[[changelog.autolabeler]]
+label = "load-testing"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Ll]oad\s+[Tt]esting|[Ss]tress\s+[Tt]esting'
+
+[[changelog.autolabeler]]
+label = "decommission"
+regex = '^([Rr]emove|[Dd]eprecate)\s+'
+
+[[changelog.autolabeler]]
+label = "dark-mode"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Dd]ark\s+[Mm]ode'
+
+[[changelog.autolabeler]]
+label = "svg"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Ss]vg'
+
+[[changelog.autolabeler]]
+label = "wcag"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Ww]eb\s+[Aa]ccessibility'
+
+[[changelog.autolabeler]]
+label = "seo-updates"
+regex = '^([Uu]pdate|[Ii]mprove)\s+[Ss]eo'
+
+[[changelog.autolabeler]]
+label = "responsive-design"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Rr]esponsive\s+[Dd]esign'
+
+[[changelog.autolabeler]]
+label = "security-audit"
+regex = '^([Cc]onduct|[Ii]mprove)\s+[Ss]ecurity\s+[Aa]udit|[Pp]en\s+[Tt]esting'
+
+[[changelog.autolabeler]]
+label = "state-management"
+regex = '^([Rr]efactor)\s+[Ss]tate\s+[Mm]anagement'
+
+[[changelog.autolabeler]]
+label = "progressive-enhancement"
+regex = '^([Ii]mplement|[Ii]mprove)\s+[Pp]rogressive\s+[Ee]nhancement'
+
+[[changelog.autolabeler]]
+label = "browser-compatibility"
+regex = '^([Uu]pdate|[Ii]mprove)\s+[Bb]rowser\s+[Cc]ompatibility'
+
+[[changelog.autolabeler]]
+label = "multilingual"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Mm]ultilingual\s+[Ss]upport'
+
+[[changelog.autolabeler]]
+label = "analytics-reporting"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Aa]nalytics|[Rr]eporting'
+
+[[changelog.autolabeler]]
+label = "api-rate-limit"
+regex = '^([Ii]mplement|[Uu]pdate)\s+[Aa]pi\s+[Rr]ate\s+[Ll]imiting'
+
+[[changelog.autolabeler]]
+label = "cdn"
+regex = '^([Aa]dd|[Ii]ntegrate)\s+[Cc]dn'
+
+[[changelog.autolabeler]]
+label = "security-headers"
+regex = '^([Aa]dd|[Ii]mplement)\s+[Ss]ecurity\s+[Hh]eaders'
+
+[[changelog.autolabeler]]
+label = "privacy-enhancements"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Uu]ser\s+[Pp]rivacy'
+
+[[changelog.autolabeler]]
+label = "env-vars"
+regex = '^([Mm]anage|[Uu]pdate)\s+[Ee]nvironmental\s+[Vv]ariables'
+
+[[changelog.autolabeler]]
+label = "sitemap"
+regex = '^([Gg]enerate|[Mm]anage)\s+[Ss]itemap'
+
+[[changelog.autolabeler]]
+label = "feature-flags"
+regex = '^([Mm]anage|[Uu]pdate)\s+[Ff]eature\s+[Ff]lags'
+
+[[changelog.autolabeler]]
+label = "cd-pipeline"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Cc]ontinuous\s+[Dd]eployment'
+
+[[changelog.autolabeler]]
+label = "testing-frameworks"
+regex = '^([Aa]dd|[Ii]mprove)\s+[Aa]utomated\s+[Tt]esting\s+[Ff]rameworks'
+
+[[changelog.autolabeler]]
+label = "dynamic-content"
+regex = '^([Ii]mprove|[Uu]pdate)\s+[Dd]ynamic\s+[Cc]ontent\s+[Dd]elivery'
+
+[[changelog.autolabeler]]
+label = "graphql"
+regex = '^([Ii]mplement|[Uu]pdate)\s+[Gg]raphQL\s+[Aa]pi'
+
+[[changelog.autolabeler]]
+label = "websockets"
+regex = '^([Ii]mplement|[Uu]se)\s+[Ww]ebSockets'
+
+[[changelog.autolabeler]]
+label = "pwa-optimization"
+regex = '^([Oo]ptimize|[Ii]mprove)\s+[Pp]rogressive\s+[Ww]eb\s+[Aa]pps'
+
+[[changelog.autolabeler]]
+label = "third-party-apis"
+regex = '^([Ii]ntegrate|[Uu]pdate)\s+[Tt]hird\s-[Pp]arty\s+[Aa]pis'
+
+[[changelog.autolabeler]]
+label = "modularization"
+regex = '^([Mm]odularize|[Rr]efactor)\s+[Cc]odebase'
+
+[[changelog.autolabeler]]
+label = "data-encryption"
+regex = '^([Ii]mprove|[Aa]dd)\s+[Dd]ata\s+[Ee]ncryption'
+
+[[changelog.autolabeler]]
+label = "mobile-performance"
+regex = '^([Oo]ptimize|[Ii]mprove)\s+[Mm]obile\s+[Aa]pp\s+[Pp]erformance'
+
+[[changelog.autolabeler]]
+label = "code-formatting"
+regex = '^([Ii]mplement|[Uu]se)\s+[Aa]utomated\s+[Cc]ode\s+[Ff]ormatting'
+
+[[changelog.autolabeler]]
+label = "misc"
+regex = '.' # Matches any characters
+

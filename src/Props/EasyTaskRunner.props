@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<Project Sdk="Microsoft.NET.Sdk">-->
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+
+  <PropertyGroup>
+    <Description>This is a default project description</Description>
+    <Copyright>Harold-Andreas Zellner</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Authors>Harold-Andreas Zellner</Authors>
+    <PackageTags>FirstTag;SecondTag</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>EasyTaskRunner.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/silenterus/EasyTaskRunner</PackageProjectUrl>
+    <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
+    <!--Add support for sourcelink-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <NeutralLanguage>en-US</NeutralLanguage>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+
+
+
+  <ItemGroup>
+    <None Visible="false" Include="$(MSBuildThisFileDirectory)../../assets/EasyTaskRunner.ico" Pack="true" PackagePath="/" />
+    <None Visible="false" Include="$(MSBuildThisFileDirectory)../../assets/EasyTaskRunner.png" Pack="true" PackagePath="/" />
+    <None Visible="false" Include="$(MSBuildThisFileDirectory)../../README.md" Pack="true" PackagePath="/" />
+    <None Visible="false" Include="$(MSBuildThisFileDirectory)../../CHANGELOG.md" Pack="true" PackagePath="/" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <ProjectReference Include="..\..\..\Omni.Datatypes\src\Omni.Datatypes\Omni.Datatypes.csproj" />
+    <ProjectReference Include="..\..\..\Omni.Extensions\src\Omni.Extensions\Omni.Extensions.csproj" />
+    <ProjectReference Include="..\..\..\Omni.Core\src\Omni.Core\Omni.Core.csproj" />
+
+
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="4.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+
+</Project>

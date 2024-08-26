@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\Props\EasyTaskRunner.props" />
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <PackageId>EasyTaskRunner.Data</PackageId>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,114 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBC4B16D-083F-47E6-BFAE-9064E600F230}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		releaser\dotnet-releaser.toml = releaser\dotnet-releaser.toml
+		global.json = global.json
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Props", "Props", "{CCC4B16D-083F-47E6-BFAE-9064E600F230}"
+	ProjectSection(SolutionItems) = preProject
+		src\Props\Directory.Packages.props = src\Props\Directory.Packages.props
+		src\Props\EasyTaskRunner.props = src\Props\EasyTaskRunner.props
+		src\Props\EasyTaskRunner-win.props = src\Props\EasyTaskRunner-win.props
+		src\Props\EasyTaskRunner-win-x64.props = src\Props\EasyTaskRunner-win-x64.props
+		src\Props\EasyTaskRunner-win-x86.props = src\Props\EasyTaskRunner-win-x86.props
+
+		src\Props\EasyTaskRunner-android.props = src\Props\EasyTaskRunner-android.props
+		src\Props\EasyTaskRunner-android-arm64.props = src\Props\EasyTaskRunner-android-arm64.props
+		src\Props\EasyTaskRunner-browser.props = src\Props\EasyTaskRunner-browser.props
+		src\Props\EasyTaskRunner-browser-wasm.props = src\Props\EasyTaskRunner-browser-wasm.props
+
+
+		src\Props\EasyTaskRunner-ios.props = src\Props\EasyTaskRunner-ios.props
+		src\Props\EasyTaskRunner-ios-arm64.props = src\Props\EasyTaskRunner-ios-arm64.props
+		src\Props\EasyTaskRunner-linux.props = src\Props\EasyTaskRunner-linux.props
+		src\Props\EasyTaskRunner-linux-arm.props = src\Props\EasyTaskRunner-linux-arm.props
+		src\Props\EasyTaskRunner-linux-arm64.props = src\Props\EasyTaskRunner-linux-arm64.props
+		src\Props\EasyTaskRunner-linux-bionic-arm64.props = src\Props\EasyTaskRunner-linux-bionic-arm64.props
+		src\Props\EasyTaskRunner-linux-x64.props = src\Props\EasyTaskRunner-linux-x64.props
+		src\Props\EasyTaskRunner-linux-x86.props = src\Props\EasyTaskRunner-linux-x86.props
+		src\Props\EasyTaskRunner-osx.props = src\Props\EasyTaskRunner-osx.props
+		src\Props\EasyTaskRunner-osx-arm64.props = src\Props\EasyTaskRunner-osx-arm64.props
+		src\Props\EasyTaskRunner-osx-x64.props = src\Props\EasyTaskRunner-osx-x64.props
+	EndProjectSection
+EndProject
+
+
+
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Src", "Src", "{ECC4B16D-083F-47E6-BFAE-9064E600F230}"
+EndProject
+
+
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FCC4B16D-083F-47E6-BFAE-9064E600F230}"
+EndProject
+
+
+
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyTaskRunner.Core", "src\EasyTaskRunner.Core\EasyTaskRunner.Core.csproj", "{2E2CDAEE-7DE2-4D07-9E44-E270D233FFFB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyTaskRunner.Tests", "src\EasyTaskRunner.Tests\EasyTaskRunner.Tests.csproj", "{4E01030F-5C2F-4737-B72E-18C1DFEEB63E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTaskRunner", "src\EasyTaskRunner\EasyTaskRunner.csproj", "{7494F60A-7462-4061-B0D2-A9899F918340}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTaskRunner.Data", "src\EasyTaskRunner.Data\EasyTaskRunner.Data.csproj", "{19277B8C-7EEC-4B54-AA76-DDB234088ABD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTaskRunner.Extensions", "src\EasyTaskRunner.Extensions\EasyTaskRunner.Extensions.csproj", "{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1}"
+EndProject
+
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E2CDAEE-7DE2-4D07-9E44-E270D233FFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E2CDAEE-7DE2-4D07-9E44-E270D233FFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E2CDAEE-7DE2-4D07-9E44-E270D233FFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E2CDAEE-7DE2-4D07-9E44-E270D233FFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E01030F-5C2F-4737-B72E-18C1DFEEB63E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E01030F-5C2F-4737-B72E-18C1DFEEB63E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E01030F-5C2F-4737-B72E-18C1DFEEB63E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E01030F-5C2F-4737-B72E-18C1DFEEB63E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7494F60A-7462-4061-B0D2-A9899F918340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7494F60A-7462-4061-B0D2-A9899F918340}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7494F60A-7462-4061-B0D2-A9899F918340}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7494F60A-7462-4061-B0D2-A9899F918340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19277B8C-7EEC-4B54-AA76-DDB234088ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19277B8C-7EEC-4B54-AA76-DDB234088ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19277B8C-7EEC-4B54-AA76-DDB234088ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19277B8C-7EEC-4B54-AA76-DDB234088ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+
+		{2E2CDAEE-7DE2-4D07-9E44-E270D233FFFB} = {ECC4B16D-083F-47E6-BFAE-9064E600F230}
+		{7494F60A-7462-4061-B0D2-A9899F918340} = {ECC4B16D-083F-47E6-BFAE-9064E600F230}
+		{19277B8C-7EEC-4B54-AA76-DDB234088ABD} = {ECC4B16D-083F-47E6-BFAE-9064E600F230}
+		{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1} = {ECC4B16D-083F-47E6-BFAE-9064E600F230}
+
+		{4E01030F-5C2F-4737-B72E-18C1DFEEB63E} = {FCC4B16D-083F-47E6-BFAE-9064E600F230}
+
+
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95E8F3B3-49E8-400E-97A1-38D8B946DFCA}
+	EndGlobalSection
+EndGlobal

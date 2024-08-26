@@ -1,0 +1,123 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\Props\EasyTaskRunner.props" />
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <PackageId>EasyTaskRunner</PackageId>
+    <RuntimeIdentifiers>win-x64;win-x86;linux-x64;linux-arm;linux-arm64;osx-x64;osx-arm64;ios-arm64;android-arm64;win-arm64;linux-bionic-arm64</RuntimeIdentifiers>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup>
+
+    <TargetFramework>net8.0</TargetFramework>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
+
+    <GenerateNuspec>true</GenerateNuspec>
+    <BaseOutputPath Condition="'$(DotNetReleaserBinCi)' == 'true'">bin-ci</BaseOutputPath>
+    <RootNamespace>omni__penetration</RootNamespace>
+    <AssemblyName>omni__penetration</AssemblyName>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <OmniVersion>0.0.1</OmniVersion>
+    <ProjectCamelCaseNameAssemblyVersion>0.0.1.0</ProjectCamelCaseNameAssemblyVersion>
+    <AssemblyVersion>$(ProjectCamelCaseNameAssemblyVersion)</AssemblyVersion>
+    <FileVersion>$(ProjectCamelCaseNameAssemblyVersion)</FileVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <LangVersion>latestmajor</LangVersion>
+    <Title>EasyTaskRunner</Title>
+    <RepositoryUrl>https://github.com/silenterus/Omni.Penetration</RepositoryUrl>
+    <ApplicationIcon>..\..\assets\EasyTaskRunner.ico</ApplicationIcon>
+    <PackageIcon>EasyTaskRunner.png</PackageIcon>
+
+    <Description>This is a default project description</Description>
+    <Copyright>Harold-Andreas Zellner</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Authors>Harold-Andreas Zellner</Authors>
+    <PackageTags>FirstTag;SecondTag</PackageTags>
+    <PackageProjectUrl>https://github.com/silenterus/EasyTaskRunner</PackageProjectUrl>
+
+  </PropertyGroup>
+
+
+  <PropertyGroup>
+    <Copyright>Harold-Andreas Zellner</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageReleaseNotes>https://github.com/silenterus/$(AssemblyName)/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageProjectUrl>https://silenterus.github.io/OmniTool/</PackageProjectUrl>
+    <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.2-ci-210" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Visible="false" Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Visible="false" Include="..\..\assets\EasyTaskRunner.png" Pack="true" PackagePath="\" />
+    <None Visible="false" Include="..\..\assets\EasyTaskRunner.ico" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.Analyzers" Version="4.12.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" PrivateAssets="all" />
+  </ItemGroup>
+  
+  
+  <ItemGroup>
+
+    <!--
+            <None Include="bin\Release\$(TargetFramework)\win-x64\publish\Omni.exe" Pack="true" PackagePath="tools\win-x64\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\Omni.exe')" />
+            <None Include="bin\Release\$(TargetFramework)\win-x86\publish\Omni.exe" Pack="true" PackagePath="tools\win-x86\" Condition="Exists('bin\Release\$(TargetFramework)\win-x86\publish\Omni.exe')" />
+            <None Include="bin\Release\$(TargetFramework)\linux-x64\publish\Omni" Pack="true" PackagePath="tools\linux-x64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-x64\publish\Omni')" />
+            <None Include="bin\Release\$(TargetFramework)\linux-arm\publish\Omni" Pack="true" PackagePath="tools\linux-arm\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm\publish\Omni')" />
+            <None Include="bin\Release\$(TargetFramework)\linux-arm64\publish\Omni" Pack="true" PackagePath="tools\linux-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm64\publish\Omni')" />
+            <None Include="bin\Release\$(TargetFramework)\osx-x64\publish\Omni" Pack="true" PackagePath="tools\osx-x64\" Condition="Exists('bin\Release\$(TargetFramework)\osx-x64\publish\Omni')" />
+            <None Include="bin\Release\$(TargetFramework)\osx-arm64\publish\Omni" Pack="true" PackagePath="tools\osx-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\osx-arm64\publish\Omni')" />
+            <None Include="bin\Release\$(TargetFramework)\win-arm64\publish\Omni.exe" Pack="true" PackagePath="tools\win-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\win-arm64\publish\Omni.exe')" />
+            <None Include="bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\Omni" Pack="true" PackagePath="tools\linux-bionic-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\Omni')" />
+    -->
+
+
+    <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="tools\win-x64\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\win-x86\publish\**\*.*" Pack="true" PackagePath="tools\win-x86\" Condition="Exists('bin\Release\$(TargetFramework)\win-x86\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\linux-x64\publish\**\*.*" Pack="true" PackagePath="tools\linux-x64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-x64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\linux-arm\publish\**\*.*" Pack="true" PackagePath="tools\linux-arm\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\linux-arm64\publish\**\*.*" Pack="true" PackagePath="tools\linux-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\osx-x64\publish\**\*.*" Pack="true" PackagePath="tools\osx-x64\" Condition="Exists('bin\Release\$(TargetFramework)\osx-x64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\osx-arm64\publish\**\*.*" Pack="true" PackagePath="tools\osx-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\osx-arm64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\win-arm64\publish\**\*.*" Pack="true" PackagePath="tools\win-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\win-arm64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\**\*.*" Pack="true" PackagePath="tools\linux-bionic-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\')" />
+
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasyTaskRunner.Data\EasyTaskRunner.Data.csproj" />
+    <ProjectReference Include="..\EasyTaskRunner.Extensions\EasyTaskRunner.Extensions.csproj" />
+    <ProjectReference Include="..\EasyTaskRunner.Core\EasyTaskRunner.Core.csproj" />
+  </ItemGroup>
+
+
+</Project>
+

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\Props\EasyTaskRunner.props" />
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <PackageId>EasyTaskRunner.Extensions</PackageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyTaskRunner.Data\EasyTaskRunner.Data.csproj" />
+
+  </ItemGroup>
+</Project>
