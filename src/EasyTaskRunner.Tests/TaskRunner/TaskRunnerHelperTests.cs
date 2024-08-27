@@ -6,28 +6,22 @@ namespace EasyTaskRunner.Tests.TaskRunner
 {
 
 
-    public class TaskRunnerHelperTests
+    public class TaskRunnerHelperTests(ITestOutputHelper testOutputHelper)
     {
-        private bool _logActive = false;
+        private readonly bool _logActive = false;
 
         private int _executionCount;
-        private readonly ITestOutputHelper _testOutputHelper;
-
-        public TaskRunnerHelperTests(ITestOutputHelper testOutputHelper)
-        {
-            _testOutputHelper = testOutputHelper;
-        }
 
         private void Log(string msg, int count)
         {
             if (!_logActive) return;
-            _testOutputHelper.WriteLine($"{msg} - executionCount:[{_executionCount}] count:[{count}]");
+            testOutputHelper.WriteLine($"{msg} - executionCount:[{_executionCount}] count:[{count}]");
         }
 
         private void Log(RequestTaskFire status, int count, string msg = "")
         {
             if (!_logActive) return;
-            _testOutputHelper.WriteLine($"{status.ToString()} {msg} - executionCount:[{_executionCount}] count:[{count}]");
+            testOutputHelper.WriteLine($"{status.ToString()} {msg} - executionCount:[{_executionCount}] count:[{count}]");
         }
 
         private void SampleExecution()
