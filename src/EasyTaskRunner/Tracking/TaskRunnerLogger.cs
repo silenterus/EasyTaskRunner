@@ -1,6 +1,6 @@
-﻿using System.Collections.Concurrent;
-namespace omni__penetration.Tracking;
+﻿namespace EasyTaskRunner.Tracking;
 
+using System.Collections.Concurrent;
 public enum TaskRunnerLogType
 {
     Message = 1,

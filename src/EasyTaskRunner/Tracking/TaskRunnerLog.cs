@@ -1,6 +1,6 @@
-﻿using EasyTaskRunner.Data.Enums;
-namespace omni__penetration.Tracking;
+﻿namespace EasyTaskRunner.Tracking;
 
+using EasyTaskRunner.Data.Enums;
 public interface ITaskRunnerLogFormatter
 {
     string Format(TaskRunnerLogMessage logMessage);

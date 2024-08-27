@@ -1,4 +1,4 @@
-﻿namespace omni__penetration.Tracking;
+﻿namespace EasyTaskRunner.Tracking;
 
 public class TaskRunnerLogEntry2
 {
