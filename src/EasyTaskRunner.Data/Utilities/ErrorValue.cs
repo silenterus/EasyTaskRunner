@@ -1,6 +1,5 @@
 ﻿namespace EasyTaskRunner.Data.Utilities;
 
-
 public class ErrorValue
 {
     private int MaxError { get; set; } = 0;

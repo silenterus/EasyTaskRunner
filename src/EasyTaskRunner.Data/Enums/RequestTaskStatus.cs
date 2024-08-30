@@ -10,5 +10,5 @@ public enum RequestTaskStatus
     Canceled,
     Stopping,
     Stopped,
-    Faulted
+    Faulted,
 }

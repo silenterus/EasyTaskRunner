@@ -1,6 +1,3 @@
 ﻿namespace SqlAutoGen.Tests.Utils;
 
-public class TaskRunnerParameterTests
-{
-    
-}
+public class TaskRunnerParameterTests { }

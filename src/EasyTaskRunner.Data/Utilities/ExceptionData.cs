@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+
 namespace EasyTaskRunner.Data.Utilities;
 
 public class ExceptionData
@@ -81,11 +82,7 @@ public class ExceptionData
             InnerExceptionData.Display();
         }
     }
-
-
 }
-
-
 
 public class ExceptionEntity
 {
@@ -189,23 +186,17 @@ public class ExceptionCache
             Source = ex.Source,
             TargetSite = ex.TargetSite,
             HelpLink = !string.IsNullOrEmpty(ex.HelpLink) ? new Uri(ex.HelpLink) : null,
-            HResult = ex.HResult
+            HResult = ex.HResult,
         };
 
         if (!string.IsNullOrEmpty(ex.StackTrace))
         {
-            exceptionEntity.StackTraces = ex.StackTrace
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
-                .Select(line => new StackTraceEntity(line))
-                .ToList();
+            exceptionEntity.StackTraces = ex.StackTrace.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Select(line => new StackTraceEntity(line)).ToList();
         }
 
         foreach (var key in ex.Data.Keys)
         {
-            exceptionEntity.DataEntries.Add(new DataEntity(key.ToString())
-            {
-                Value = ex.Data[key]?.ToString()
-            });
+            exceptionEntity.DataEntries.Add(new DataEntity(key.ToString()) { Value = ex.Data[key]?.ToString() });
         }
 
         exceptionEntity.GenerateHash();

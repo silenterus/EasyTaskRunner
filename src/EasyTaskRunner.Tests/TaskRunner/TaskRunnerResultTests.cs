@@ -1,6 +1,4 @@
-﻿namespace SqlAutoGen.Tests.Utils;
-
-public class TaskRunnerResultTests
+﻿namespace SqlAutoGen.Tests.Utils
 {
-    
+    public class TaskRunnerResultTests { }
 }

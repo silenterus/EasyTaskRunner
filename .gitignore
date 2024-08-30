@@ -9,7 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+.config
 # Rider
 .idea/
 
@@ -35,6 +35,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+
+
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -378,3 +380,7 @@ tmp/
 
 # Remove artifacts produced by dotnet-releaser
 artifacts-dotnet-releaser/
+!./builds/Build/*
+!./builds/Build
+
+!**/[Bb]uilds/[Bb]uild/

@@ -2,7 +2,6 @@
 
 public class ErrorCounter
 {
-
     private bool IsActive { get; set; } = false;
     private readonly Dictionary<string, ErrorValue> _values = new Dictionary<string, ErrorValue>();
 
@@ -69,7 +68,6 @@ public class ErrorCounter
         return _values.Values.Any(v => v.IsLimit());
     }
 
-
     public bool Reached(string[] errorNames)
     {
         if (!IsActive)
@@ -78,7 +76,7 @@ public class ErrorCounter
         }
         foreach (string name in errorNames)
         {
-            if(Reached(name))
+            if (Reached(name))
             {
                 return true;
             }
@@ -146,7 +144,6 @@ public class ErrorCounter
         {
             value.Reset();
         }
-
     }
 
     public void Clear(string clearName)
@@ -172,7 +169,6 @@ public class ErrorCounter
             Clear(name);
         }
     }
-
 
     public void SetErrorLimit(string name, int maxError)
     {

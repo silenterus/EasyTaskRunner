@@ -2,12 +2,11 @@
 using EasyTaskRunner.Extensions.Helper;
 using Xunit;
 using Xunit.Abstractions;
+
 namespace EasyTaskRunner.Tests.TaskRunner
 {
-
     public class TaskRunnerTests
     {
-
         private bool _logActive = false;
 
         private int _executionCount;
@@ -18,17 +17,20 @@ namespace EasyTaskRunner.Tests.TaskRunner
             _testOutputHelper = testOutputHelper;
         }
 
-        private void Log(string msg,int count)
+        private void Log(string msg, int count)
         {
-           if(_logActive)return;
-           _testOutputHelper.WriteLine($"{msg} - executionCount:[{_executionCount}] count:[{count}]");
+            if (_logActive)
+                return;
+            _testOutputHelper.WriteLine($"{msg} - executionCount:[{_executionCount}] count:[{count}]");
         }
 
-        private void Log(RequestTaskFire status,int count,string msg = "")
+        private void Log(RequestTaskFire status, int count, string msg = "")
         {
-            if(!_logActive)return;
+            if (!_logActive)
+                return;
             _testOutputHelper.WriteLine($"{status.ToString()} {msg} - executionCount:[{_executionCount}] count:[{count}]");
         }
+
         private void SampleExecution()
         {
             _executionCount++;
@@ -41,7 +43,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             _executionCount = 0;
             var options = TaskRunnerHelper.CreateOptions(count: 10, maxParallel: 0, endless: false, delay: 0);
             var taskRunner1 = new Core.TaskRunner(name, SampleExecution, options);
-           // var taskRunner2 = new EasyTaskRunner.Core.TaskRunner(name, SampleExecution, options);
+            // var taskRunner2 = new EasyTaskRunner.Core.TaskRunner(name, SampleExecution, options);
 
             var fireTask1 = Task.Run(() => taskRunner1.Fire(RequestTaskFire.Start));
             await Task.Yield();
@@ -53,7 +55,6 @@ namespace EasyTaskRunner.Tests.TaskRunner
             Assert.Equal(20, _executionCount);
             Assert.Contains("completed", taskRunner1.Status());
             //Assert.Contains("completed", taskRunner2.Status());
-
         }
 
         [Fact]
@@ -195,7 +196,6 @@ namespace EasyTaskRunner.Tests.TaskRunner
             Assert.Contains("faulted", taskRunner.Status());
         }
 
-
         [Fact]
         public async Task EndlessExecution_PauseAndStop()
         {
@@ -224,16 +224,15 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var taskRunner = new Core.TaskRunner(name, SampleExecution, options);
 
             await Task.Run(() => taskRunner.Fire(RequestTaskFire.Start));
-            Log(RequestTaskFire.Start,count:options.Count);
+            Log(RequestTaskFire.Start, count: options.Count);
             await Task.Delay(100);
             await Task.Run(() => taskRunner.Fire(RequestTaskFire.Toggle));
-            Log(RequestTaskFire.Pause,count:options.Count,"Before");
+            Log(RequestTaskFire.Pause, count: options.Count, "Before");
             await Task.Delay(1000);
             await Task.Run(() => taskRunner.Fire(RequestTaskFire.Toggle));
-            Log(RequestTaskFire.Pause,count:options.Count);
+            Log(RequestTaskFire.Pause, count: options.Count);
             await Task.Delay(80);
-            Log(RequestTaskFire.Pause,count:options.Count,"Delay");
-
+            Log(RequestTaskFire.Pause, count: options.Count, "Delay");
 
             Assert.True(_executionCount > 1);
             Assert.Contains("running", taskRunner.Status());
@@ -316,7 +315,6 @@ namespace EasyTaskRunner.Tests.TaskRunner
             Assert.Contains("running", taskRunner.Status());
         }
 
-
         [Fact]
         public async Task FireParallelEndless_RunsTasksConcurrentlyUntilStopped()
         {
@@ -346,7 +344,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var taskRunner = new Core.TaskRunner(name, SampleExecution, options);
 
             await Task.Run(() => taskRunner.Fire(RequestTaskFire.Start));
-            await Task.Delay(delay*2);
+            await Task.Delay(delay * 2);
 
             Assert.Equal(maxParallel, _executionCount);
             Assert.Contains("completed execution", taskRunner.Status());
@@ -390,10 +388,10 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var maxParallel = 3;
             var delay = 100;
             var allDelay = 500;
-            var expectedCount = count*maxCount;
+            var expectedCount = count * maxCount;
             _executionCount = 0;
 
-            var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: maxParallel, maxCount:maxCount, useSemaphore:true, endless:false,delay: delay);
+            var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: maxParallel, maxCount: maxCount, useSemaphore: true, endless: false, delay: delay);
             var taskRunner = new Core.TaskRunner(name, SampleExecution, options);
 
             await Task.Run(() => taskRunner.Fire(RequestTaskFire.Start));
@@ -402,12 +400,13 @@ namespace EasyTaskRunner.Tests.TaskRunner
             Assert.Equal(expectedCount, _executionCount);
             Assert.Contains("completed execution", taskRunner.Status());
         }
+
         [Fact]
         public async Task PauseAsync_PausesExecution()
         {
             var name = "PauseTask";
             _executionCount = 0;
-            var options = TaskRunnerHelper.CreateOptions(count: 3, maxParallel: 0, maxCount:0, useSemaphore:false, endless:false,delay: 1000);
+            var options = TaskRunnerHelper.CreateOptions(count: 3, maxParallel: 0, maxCount: 0, useSemaphore: false, endless: false, delay: 1000);
 
             var taskRunner = new Core.TaskRunner(name, SampleExecution, options);
             await Task.Run(() => taskRunner.Fire(RequestTaskFire.Start));
@@ -420,6 +419,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             Assert.Equal(previousCount, _executionCount);
             Assert.Contains("paused", taskRunner.Status());
         }
+
         [Fact]
         public async Task StartStopAndRestart()
         {
@@ -448,7 +448,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var count = 15;
             _executionCount = 0;
 
-            var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: 0,maxCount:0, endless: false, delay: 200);
+            var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: 0, maxCount: 0, endless: false, delay: 200);
             var taskRunner = new Core.TaskRunner(name, SampleExecution, options);
 
             taskRunner.Fire(RequestTaskFire.Start);
@@ -458,8 +458,6 @@ namespace EasyTaskRunner.Tests.TaskRunner
             await Task.Delay(2500);
             taskRunner.Fire(RequestTaskFire.UnPause);
             await Task.Delay(80);
-
-
 
             Assert.True(_executionCount < count);
             Assert.Contains("running", taskRunner.Status());
@@ -472,7 +470,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var count = 15;
             _executionCount = 0;
 
-            var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: 0,maxCount:0, endless: false, delay: 200);
+            var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: 0, maxCount: 0, endless: false, delay: 200);
             var taskRunner = new Core.TaskRunner(name, SampleExecution, options);
 
             taskRunner.Fire(RequestTaskFire.Start);
@@ -487,9 +485,5 @@ namespace EasyTaskRunner.Tests.TaskRunner
             Assert.True(_executionCount < count);
             Assert.Contains("running", taskRunner.Status());
         }
-
     }
-
-
-
 }

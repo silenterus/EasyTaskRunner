@@ -2,9 +2,9 @@
 using System.Text;
 using EasyTaskRunner.Data.Enums;
 using EasyTaskRunner.Data.Interfaces;
+
 namespace EasyTaskRunner
 {
-
     public class TaskRunnerManager
     {
         private readonly ConcurrentDictionary<string, ITaskRunner> _runners = new ConcurrentDictionary<string, ITaskRunner>();

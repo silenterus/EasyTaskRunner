@@ -2,10 +2,9 @@
 using EasyTaskRunner.Extensions.Helper;
 using Xunit;
 using Xunit.Abstractions;
+
 namespace EasyTaskRunner.Tests.TaskRunner
 {
-
-
     public class TaskRunnerHelperTests(ITestOutputHelper testOutputHelper)
     {
         private readonly bool _logActive = false;
@@ -14,13 +13,15 @@ namespace EasyTaskRunner.Tests.TaskRunner
 
         private void Log(string msg, int count)
         {
-            if (!_logActive) return;
+            if (!_logActive)
+                return;
             testOutputHelper.WriteLine($"{msg} - executionCount:[{_executionCount}] count:[{count}]");
         }
 
         private void Log(RequestTaskFire status, int count, string msg = "")
         {
-            if (!_logActive) return;
+            if (!_logActive)
+                return;
             testOutputHelper.WriteLine($"{status.ToString()} {msg} - executionCount:[{_executionCount}] count:[{count}]");
         }
 
@@ -67,12 +68,13 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var name = "TestTask";
             var count = 3;
             _executionCount = 0;
-            var taskRunner = TaskRunnerHelper.CreateAndStart<Core.TaskRunner, Action>(name, SampleExecution, count: count, maxParallel: 0, endless: false, delay: 500);
+            var taskRunner = TaskRunnerHelper.CreateAndStart<Core.TaskRunner, Action>(name, SampleExecution, TaskRunnerHelper.CreateOptions(count: count, maxParallel: 0, endless: false, delay: 500));
 
+            await Task.Run(() => taskRunner.Fire(RequestTaskFire.Start));
             await Task.Delay(100);
-            await Task.Run(() => TaskRunnerHelper.Restart(taskRunner));
+            await Task.Run(() => taskRunner.Fire(RequestTaskFire.Start));
 
-            Assert.Contains("running", TaskRunnerHelper.GetStatus(taskRunner));
+            Assert.Contains("running", taskRunner.Status());
         }
 
         [Fact]

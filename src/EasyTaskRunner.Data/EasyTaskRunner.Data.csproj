@@ -4,6 +4,9 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <PackageId>EasyTaskRunner.Data</PackageId>
+    <LangVersion>12</LangVersion>
+
+
   </PropertyGroup>
 
 </Project>

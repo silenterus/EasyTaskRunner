@@ -1,6 +1,7 @@
+# 🏗️ EasyTaskRunner 🏗️
+
 # EasyTaskRunner [![Build Status](https://github.com/silenterus/EasyTaskRunner/workflows/ci/badge.svg?branch=main)](https://github.com/silenterus/EasyTaskRunner/actions) [![NuGet](https://img.shields.io/nuget/v/EasyTaskRunner.svg)](https://www.nuget.org/packages/EasyTaskRunner/)
 
-<img align="right" width="160px" height="160px" src="https://raw.githubusercontent.com/silenterus/EasyTaskRunner/main/assets/EasyTaskRunner.png">
 
 
 
@@ -19,3 +20,10 @@ This software is released under the [BSD-2-Clause license](https://opensource.or
 ## Author
 
 Harold-Andreas Zellner aka [silenterus](https://silenterus.github.io/EasyTaskRunner).
+### 🚧 **Currently Under Construction!** 🚧
+
+
+
+
+
+

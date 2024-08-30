@@ -8,22 +8,20 @@
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU</Platforms>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
     <PackAsTool>false</PackAsTool>
     <GenerateNuspec>true</GenerateNuspec>
-    <VersionPrefix>0.0.1</VersionPrefix>
-    <AssemblyVersion>0.0.1.0</AssemblyVersion>
-    <FileVersion>0.0.1.0</FileVersion>
+
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <EnablePackageValidation>true</EnablePackageValidation>
-    <LangVersion>latestmajor</LangVersion>
+    <LangVersion>12</LangVersion>
     <Title>EasyTaskRunner</Title>
     <RepositoryUrl>https://github.com/silenterus/Omni.Penetration</RepositoryUrl>
     <ApplicationIcon>..\..\assets\EasyTaskRunner.ico</ApplicationIcon>

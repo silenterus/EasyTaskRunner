@@ -1,8 +1,7 @@
 ﻿namespace EasyTaskRunner.Data.Utilities;
 
-public class TaskRunnerOptions(int count = 1, int maxParallel = 0,int maxCount = 1,bool useSemaphore = false, bool endless = false, int delay = 1000,bool useLog = false)
+public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount = 1, bool useSemaphore = false, bool endless = false, int delay = 1000, bool useLog = false)
 {
-
     public int Count { get; private set; } = count;
     public int Delay { get; private set; } = delay;
     public bool Endless { get; private set; } = endless;
@@ -20,35 +19,35 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0,int maxCount =
     {
         Delay = delay;
         return this;
-
     }
+
     public TaskRunnerOptions SetEndless(bool endless)
     {
         Endless = endless;
         return this;
-
     }
+
     public TaskRunnerOptions SetLog(bool activate)
     {
         UseLog = activate;
         return this;
-
     }
+
     public TaskRunnerOptions SetUseSemaphore(bool activate)
     {
         UseSemaphore = activate;
         return this;
-
     }
-    public TaskRunnerOptions SetErrors((string name,int maxError)[] errors)
+
+    public TaskRunnerOptions SetErrors((string name, int maxError)[] errors)
     {
         ErrorCount = new ErrorCounter(errors);
         return this;
     }
 
-    public TaskRunnerOptions SetCounts(int count,int maxParallel,int maxCount)
+    public TaskRunnerOptions SetCounts(int count, int maxParallel, int maxCount)
     {
-        return SetCount(count:count).SetMaxParallel(maxParallel:maxParallel).SetMaxCount(maxCount:maxCount);
+        return SetCount(count: count).SetMaxParallel(maxParallel: maxParallel).SetMaxCount(maxCount: maxCount);
     }
 
     public TaskRunnerOptions SetCount(int count)
@@ -58,14 +57,11 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0,int maxCount =
             Count = count;
         }
 
-
-
         if (Count < 1)
         {
             Count = 1;
         }
         return this;
-
     }
 
     private TaskRunnerOptions SetMaxCount(int maxCount)
@@ -79,14 +75,13 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0,int maxCount =
             MaxCount = 1;
         }
 
-
         if (MaxCount < 1)
         {
             MaxCount = 1;
         }
         return this;
-
     }
+
     public TaskRunnerOptions SetMaxParallel(int maxParallel)
     {
         if (maxParallel > 1)
@@ -98,7 +93,6 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0,int maxCount =
             MaxParallel = 0;
         }
         return this;
-
     }
 
     public void Validate()
@@ -113,7 +107,6 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0,int maxCount =
         {
             MaxCount = 1;
         }
-
 
         if (MaxParallel < 0)
         {
@@ -130,17 +123,11 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0,int maxCount =
             MaxParallel = MaxCount;
         }
 
-
-
-
         if (Delay < 0)
         {
             Delay = 0;
         }
-
     }
-
-
 
     public void CopyFrom(TaskRunnerOptions options)
     {

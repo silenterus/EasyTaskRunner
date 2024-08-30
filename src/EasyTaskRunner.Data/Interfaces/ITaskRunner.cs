@@ -15,6 +15,4 @@ namespace EasyTaskRunner.Data.Interfaces
         ITaskRunner SetOptions(TaskRunnerOptions options);
         void GetLogs();
     }
-
-
 }

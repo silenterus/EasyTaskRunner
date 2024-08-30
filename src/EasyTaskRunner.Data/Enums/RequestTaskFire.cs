@@ -16,5 +16,4 @@ public enum RequestTaskFire
     FireWait,
     FireEndless,
     FireParallelEndless,
-
 }

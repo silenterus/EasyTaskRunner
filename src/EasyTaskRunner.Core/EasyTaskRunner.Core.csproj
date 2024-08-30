@@ -4,6 +4,9 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <PackageId>EasyTaskRunner.Core</PackageId>
+    <LangVersion>latest</LangVersion>
+
+
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyTaskRunner.Data\EasyTaskRunner.Data.csproj" />

@@ -1,6 +1,7 @@
 ﻿namespace EasyTaskRunner.Tracking;
 
 using System.Collections.Concurrent;
+
 public enum TaskRunnerLogType
 {
     Message = 1,
@@ -10,9 +11,8 @@ public enum TaskRunnerLogType
     Exception = 5,
     Trace = 6,
     Critical = 7,
-    Return = 8
+    Return = 8,
 }
-
 
 public interface ITaskRunnerLog
 {
@@ -20,8 +20,6 @@ public interface ITaskRunnerLog
     void LogError(string error);
     IEnumerable<TaskRunnerLogEntry> GetAllEntries();
 }
-
-
 
 public class TaskRunnerLoggerBase
 {
@@ -37,9 +35,6 @@ public class TaskRunnerLoggerBase
         _logs.TryGetValue(taskId, out ITaskRunnerLog? log);
         return log;
     }
-
-
-
 }
 
 public class TaskRunnerLog : ITaskRunnerLog

@@ -1,18 +1,16 @@
 ﻿namespace EasyTaskRunner.Tracking;
 
 using EasyTaskRunner.Data.Enums;
+
 public interface ITaskRunnerLogFormatter
 {
     string Format(TaskRunnerLogMessage logMessage);
 }
 
-
 public interface ITaskRunnerLogHandler
 {
     void Handle(TaskRunnerLogMessage logMessage);
 }
-
-
 
 public class TaskRunnerLogMessage
 {
@@ -23,8 +21,7 @@ public class TaskRunnerLogMessage
 
     public RequestTaskStatus Status { get; }
 
-
-    public TaskRunnerLogMessage(TaskRunnerLogType logType,RequestTaskStatus status, string message, Exception? exception = null)
+    public TaskRunnerLogMessage(TaskRunnerLogType logType, RequestTaskStatus status, string message, Exception? exception = null)
     {
         LogType = logType;
         Message = message;
@@ -32,9 +29,6 @@ public class TaskRunnerLogMessage
         Exception = exception;
         Status = status;
     }
-
-
-
 }
 
 public class TaskRunnerLogger
@@ -56,8 +50,6 @@ public class TaskRunnerLogger
     }
 }
 
-
-
 public class TaskRunnerLogFormatter : ITaskRunnerLogFormatter
 {
     public string Format(TaskRunnerLogMessage logMessage)
@@ -76,8 +68,8 @@ public class TaskRunnerLogFormatter : ITaskRunnerLogFormatter
 
 public class TaskRunnerRequestLogHandler : ITaskRunnerLogHandler
 {
-
     private readonly ITaskRunnerLogFormatter _formatter;
+
     public TaskRunnerRequestLogHandler(ITaskRunnerLogFormatter formatter)
     {
         _formatter = formatter;

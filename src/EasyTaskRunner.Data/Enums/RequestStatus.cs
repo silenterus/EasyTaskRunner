@@ -1,4 +1,5 @@
 using System.ComponentModel;
+
 namespace EasyTaskRunner.Data.Enums;
 
 public enum RequestStatus
@@ -14,5 +15,5 @@ public enum RequestStatus
 
     DatabaseError = 4,
 
-    ValidationError = 5
+    ValidationError = 5,
 }

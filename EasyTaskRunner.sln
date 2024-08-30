@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTaskRunner.Data", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTaskRunner.Extensions", "src\EasyTaskRunner.Extensions\EasyTaskRunner.Extensions.csproj", "{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "builds\Build\Build.csproj", "{DAC53FC6-822D-4845-85D5-E8A059C0F090}"
+EndProject
 
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,6 +96,10 @@ Global
 		{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37B1D699-1F0B-446D-93E0-E6F2BBBB58A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAC53FC6-822D-4845-85D5-E8A059C0F090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAC53FC6-822D-4845-85D5-E8A059C0F090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAC53FC6-822D-4845-85D5-E8A059C0F090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAC53FC6-822D-4845-85D5-E8A059C0F090}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
