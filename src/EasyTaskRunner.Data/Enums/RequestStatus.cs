@@ -1,3 +1,4 @@
+/*
 using System.ComponentModel;
 
 namespace EasyTaskRunner.Data.Enums;
@@ -17,3 +18,4 @@ public enum RequestStatus
 
     ValidationError = 5,
 }
+*/

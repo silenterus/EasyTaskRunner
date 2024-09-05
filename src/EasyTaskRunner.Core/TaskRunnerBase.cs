@@ -328,8 +328,14 @@ namespace EasyTaskRunner.Core
             Fire(fire);
         }
 
-        private protected virtual string Status(RequestTaskStatus status)
+
+
+        private protected virtual string Status(RequestTaskStatus status, bool useDelay = false)
         {
+            if (useDelay)
+            {
+                Task.Delay(500).Wait();
+            }
             return status switch
             {
                 RequestTaskStatus.NotStarted => $"'{Name}' not started yet. - {StatusCount()}",
@@ -340,8 +346,17 @@ namespace EasyTaskRunner.Core
                 RequestTaskStatus.Canceled => $"'{Name}' was cancelled. - {StatusCount()}",
                 RequestTaskStatus.Faulted => $"'{Name}' faulted!!! - {StatusCount()}",
                 RequestTaskStatus.Paused => $"'{Name}' is paused. - {StatusCount()}",
-                _ => $"Unknown status. - {StatusCount()}",
+                _ => $"Unknown status. - {StatusCount()}"
             };
+        }
+
+        public string Status(bool useDelay)
+        {
+            return Status(TaskStatus,useDelay);
+        }
+        public string Status()
+        {
+            return Status(TaskStatus);;
         }
 
         private string StatusCount()
@@ -349,10 +364,7 @@ namespace EasyTaskRunner.Core
             return $"[{Index}/{_options.Count}]";
         }
 
-        public string Status()
-        {
-            return Status(TaskStatus);
-        }
+
 
         public RequestTaskStatus GetTaskStatus()
         {

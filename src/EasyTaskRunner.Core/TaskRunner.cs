@@ -10,7 +10,9 @@ namespace EasyTaskRunner.Core
     {
         public TaskRunner(string name, Action execute, TaskRunnerOptions options)
             : base(name, execute, options) { }
-
+        public TaskRunner(string name, Action execute) :  base(name, execute, new TaskRunnerOptions(1))
+        {
+        }
         protected override async Task ExecuteTaskAsync(CancellationToken token)
         {
             await Task.Yield();

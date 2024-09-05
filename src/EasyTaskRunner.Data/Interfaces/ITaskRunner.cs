@@ -11,6 +11,8 @@ namespace EasyTaskRunner.Data.Interfaces
         void Fire(RequestTaskFire fire, int count, int maxParallel);
         void Fire(RequestTaskFire fire, int count, int maxParallel, int maxParallelCount);
         string Status();
+
+
         RequestTaskStatus GetTaskStatus();
         ITaskRunner SetOptions(TaskRunnerOptions options);
         void GetLogs();
