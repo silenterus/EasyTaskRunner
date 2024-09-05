@@ -380,7 +380,17 @@ tmp/
 
 # Remove artifacts produced by dotnet-releaser
 artifacts-dotnet-releaser/
-!./builds/Build/*
-!./builds/Build
+# !./builds/Build/*
+# !./builds/Build
 
-!**/[Bb]uilds/[Bb]uild/
+# !**/[Bb]uilds/[Bb]uild/
+
+./builds
+**/[Bb]uilds
+./builds/*
+./builds/
+builds/
+builds/*
+/builds/
+/builds/*
+/builds/**
