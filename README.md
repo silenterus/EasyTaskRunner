@@ -1,8 +1,5 @@
 # 🏗️ EasyTaskRunner 🏗️
 
-# EasyTaskRunner [![Build Status](https://github.com/silenterus/EasyTaskRunner/workflows/ci/badge.svg?branch=main)](https://github.com/silenterus/EasyTaskRunner/actions) [![NuGet](https://img.shields.io/nuget/v/EasyTaskRunner.svg)](https://www.nuget.org/packages/EasyTaskRunner/)
-
-
 
 ## Features
 
