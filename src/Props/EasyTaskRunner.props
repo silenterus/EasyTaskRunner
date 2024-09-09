@@ -6,40 +6,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>true</IsPackable>
+    <RuntimeIdentifiers>win-x64;win-x86;linux-x64;linux-arm;linux-arm64;osx-x64;osx-arm64;ios-arm64;android-arm64;win-arm64;linux-bionic-arm64</RuntimeIdentifiers>
 
   </PropertyGroup>
-
-
-  <PropertyGroup>
-    <Description>This is a default project description</Description>
-    <Copyright>Harold-Andreas Zellner</Copyright>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <Authors>Harold-Andreas Zellner</Authors>
-    <PackageTags>Task;Runner</PackageTags>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageIcon>EasyTaskRunner.png</PackageIcon>
-    <PackageProjectUrl>https://github.com/silenterus/EasyTaskRunner</PackageProjectUrl>
-    <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
-    <!--Add support for sourcelink-->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <EnablePackageValidation>true</EnablePackageValidation>
-    <NeutralLanguage>en-US</NeutralLanguage>
-
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-
-
-
-
-  </PropertyGroup>
-
 
 
 
   <ItemGroup>
-    <None Visible="false" Include="$(MSBuildThisFileDirectory)../../assets/EasyTaskRunner.ico" Pack="true" PackagePath="/" />
-    <None Visible="false" Include="$(MSBuildThisFileDirectory)../../assets/EasyTaskRunner.png" Pack="true" PackagePath="/" />
+
     <None Visible="false" Include="$(MSBuildThisFileDirectory)../../README.md" Pack="true" PackagePath="/" />
     <None Visible="false" Include="$(MSBuildThisFileDirectory)../../CHANGELOG.md" Pack="true" PackagePath="/" />
 

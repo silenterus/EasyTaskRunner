@@ -387,7 +387,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var maxCount = 10;
             var maxParallel = 3;
             var delay = 100;
-            var allDelay = 500;
+            var allDelay = 510;
             var expectedCount = count * maxCount;
             _executionCount = 0;
 

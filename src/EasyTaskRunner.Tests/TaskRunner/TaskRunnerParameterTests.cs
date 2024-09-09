@@ -1,3 +1,6 @@
-﻿namespace SqlAutoGen.Tests.Utils;
+﻿namespace EasyTaskRunner.Tests.TaskRunner;
 
-public class TaskRunnerParameterTests { }
+public class TaskRunnerParameterTests
+{
+
+}

@@ -4,10 +4,11 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <PackageId>EasyTaskRunner</PackageId>
+<!--
     <RuntimeIdentifiers>win-x64;win-x86;linux-x64;linux-arm;linux-arm64;osx-x64;osx-arm64;ios-arm64;android-arm64;win-arm64;linux-bionic-arm64</RuntimeIdentifiers>
+-->
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU</Platforms>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
@@ -24,28 +25,36 @@
     <LangVersion>12</LangVersion>
     <Title>EasyTaskRunner</Title>
     <RepositoryUrl>https://github.com/silenterus/Omni.Penetration</RepositoryUrl>
-    <ApplicationIcon>..\..\assets\EasyTaskRunner.ico</ApplicationIcon>
-    <PackageIcon>EasyTaskRunner.png</PackageIcon>
     <Description>Simple Task Runner mainly for SqlAutoGen</Description>
     <Copyright>Harold-Andreas Zellner</Copyright>
-    <NeutralLanguage>en-US</NeutralLanguage>
     <Authors>Harold-Andreas Zellner</Authors>
     <PackageTags>Task;Runner</PackageTags>
     <PackageProjectUrl>https://github.com/silenterus/EasyTaskRunner</PackageProjectUrl>
   </PropertyGroup>
   <PropertyGroup>
-    <Copyright>Harold-Andreas Zellner</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageReleaseNotes>https://github.com/silenterus/$(AssemblyName)/blob/master/CHANGELOG.md</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/silenterus/EasyTaskRunner</PackageProjectUrl>
     <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    
   </PropertyGroup>
   <ItemGroup>
     <None Visible="false" Include="..\..\README.md" Pack="true" PackagePath="\" />
-    <None Visible="false" Include="..\..\assets\EasyTaskRunner.png" Pack="true" PackagePath="\" />
-    <None Visible="false" Include="..\..\assets\EasyTaskRunner.ico" Pack="true" PackagePath="\" />
+
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasyTaskRunner.Data\EasyTaskRunner.Data.csproj" />
+    <ProjectReference Include="..\EasyTaskRunner.Extensions\EasyTaskRunner.Extensions.csproj" />
+    <ProjectReference Include="..\EasyTaskRunner.Core\EasyTaskRunner.Core.csproj" />
+  </ItemGroup>
+
+<!--
   <ItemGroup>
     <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="tools\win-x64\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
     <None Include="bin\Release\$(TargetFramework)\win-x86\publish\**\*.*" Pack="true" PackagePath="tools\win-x86\" Condition="Exists('bin\Release\$(TargetFramework)\win-x86\publish\')" />
@@ -56,11 +65,18 @@
     <None Include="bin\Release\$(TargetFramework)\osx-arm64\publish\**\*.*" Pack="true" PackagePath="tools\osx-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\osx-arm64\publish\')" />
     <None Include="bin\Release\$(TargetFramework)\win-arm64\publish\**\*.*" Pack="true" PackagePath="tools\win-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\win-arm64\publish\')" />
     <None Include="bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\**\*.*" Pack="true" PackagePath="tools\linux-bionic-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\')" />
-  </ItemGroup>
+  </ItemGroup>-->
+  
   <ItemGroup>
-    <ProjectReference Include="..\EasyTaskRunner.Data\EasyTaskRunner.Data.csproj" />
-    <ProjectReference Include="..\EasyTaskRunner.Extensions\EasyTaskRunner.Extensions.csproj" />
-    <ProjectReference Include="..\EasyTaskRunner.Core\EasyTaskRunner.Core.csproj" />
+    <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="runtimes\win-x64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\win-x86\publish\**\*.*" Pack="true" PackagePath="runtimes\win-x86\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\win-x86\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\linux-x64\publish\**\*.*" Pack="true" PackagePath="runtimes\linux-x64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\linux-x64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\linux-arm\publish\**\*.*" Pack="true" PackagePath="runtimes\linux-arm\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\linux-arm64\publish\**\*.*" Pack="true" PackagePath="runtimes\linux-arm64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\osx-x64\publish\**\*.*" Pack="true" PackagePath="runtimes\osx-x64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\osx-x64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\osx-arm64\publish\**\*.*" Pack="true" PackagePath="runtimes\osx-arm64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\osx-arm64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\win-arm64\publish\**\*.*" Pack="true" PackagePath="runtimes\win-arm64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\win-arm64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\**\*.*" Pack="true" PackagePath="runtimes\linux-bionic-arm64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\')" />
   </ItemGroup>
 
 </Project>

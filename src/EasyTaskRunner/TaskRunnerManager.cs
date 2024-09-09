@@ -104,7 +104,7 @@ namespace EasyTaskRunner
             foreach (var kvp in _runners)
             {
                 string status = kvp.Value.Status();
-                statusBuilder.AppendLine($"Runner '{kvp.Key}': {status}");
+                statusBuilder.AppendLine($"{status}");
             }
 
             return statusBuilder.ToString();

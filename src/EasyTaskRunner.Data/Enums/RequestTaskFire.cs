@@ -2,6 +2,7 @@
 
 public enum RequestTaskFire
 {
+    Idle,
     Start,
     StartParallel,
     Pause,

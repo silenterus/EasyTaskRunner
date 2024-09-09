@@ -4,14 +4,9 @@
 
 
 
-
 ## Features
 
-- TODO
-
-## User Guide
-
-For more details on how to use EasyTaskRunner, please visit the [user guide](https://github.com/silenterus/EasyTaskRunner/blob/main/doc/readme.md).
+Simple TaskRunner for SqlAutoGen Generated Code
 
 ## License
 

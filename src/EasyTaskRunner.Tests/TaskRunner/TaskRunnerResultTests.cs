@@ -1,4 +1,4 @@
-﻿namespace SqlAutoGen.Tests.Utils
+﻿namespace EasyTaskRunner.Tests.TaskRunner
 {
     public class TaskRunnerResultTests { }
 }

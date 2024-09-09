@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EasyTaskRunner.Core\EasyTaskRunner.Core.csproj" />
+    <ProjectReference Include="..\EasyTaskRunner\EasyTaskRunner.csproj" />
 
   </ItemGroup>
 
