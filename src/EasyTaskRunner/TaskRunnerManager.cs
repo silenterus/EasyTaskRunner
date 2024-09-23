@@ -25,11 +25,11 @@ namespace EasyTaskRunner
             return runner;
         }
 
-        public string Fire(string name, RequestTaskFire fireCommand)
+        public string Fire(string name, RequestTaskFire fireCommand,int count)
         {
             if (TryGetRunner(name, out var runner))
             {
-                runner.Fire(fireCommand);
+                runner.Fire(fireCommand, count);
                 return runner.Status();
             }
             return $"Runner '{name}' not found.";
@@ -46,22 +46,22 @@ namespace EasyTaskRunner
 
         public void Start(string name)
         {
-            Fire(name, RequestTaskFire.Start);
+            Fire(name, RequestTaskFire.Start,0);
         }
 
         public void Stop(string name)
         {
-            Fire(name, RequestTaskFire.Stop);
+            Fire(name, RequestTaskFire.Stop,0);
         }
 
         public void Pause(string name)
         {
-            Fire(name, RequestTaskFire.Pause);
+            Fire(name, RequestTaskFire.Pause,0);
         }
 
         public void Resume(string name)
         {
-            Fire(name, RequestTaskFire.UnPause);
+            Fire(name, RequestTaskFire.UnPause,0);
         }
 
         public void StartAll()

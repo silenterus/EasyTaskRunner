@@ -41,7 +41,7 @@
 
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    
+
   </PropertyGroup>
   <ItemGroup>
     <None Visible="false" Include="..\..\README.md" Pack="true" PackagePath="\" />
@@ -57,16 +57,13 @@
 <!--
   <ItemGroup>
     <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="tools\win-x64\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
-    <None Include="bin\Release\$(TargetFramework)\win-x86\publish\**\*.*" Pack="true" PackagePath="tools\win-x86\" Condition="Exists('bin\Release\$(TargetFramework)\win-x86\publish\')" />
-    <None Include="bin\Release\$(TargetFramework)\linux-x64\publish\**\*.*" Pack="true" PackagePath="tools\linux-x64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-x64\publish\')" />
-    <None Include="bin\Release\$(TargetFramework)\linux-arm\publish\**\*.*" Pack="true" PackagePath="tools\linux-arm\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm\publish\')" />
-    <None Include="bin\Release\$(TargetFramework)\linux-arm64\publish\**\*.*" Pack="true" PackagePath="tools\linux-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-arm64\publish\')" />
-    <None Include="bin\Release\$(TargetFramework)\osx-x64\publish\**\*.*" Pack="true" PackagePath="tools\osx-x64\" Condition="Exists('bin\Release\$(TargetFramework)\osx-x64\publish\')" />
-    <None Include="bin\Release\$(TargetFramework)\osx-arm64\publish\**\*.*" Pack="true" PackagePath="tools\osx-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\osx-arm64\publish\')" />
-    <None Include="bin\Release\$(TargetFramework)\win-arm64\publish\**\*.*" Pack="true" PackagePath="tools\win-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\win-arm64\publish\')" />
-    <None Include="bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\**\*.*" Pack="true" PackagePath="tools\linux-bionic-arm64\" Condition="Exists('bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\')" />
-  </ItemGroup>-->
-  
+
+</ItemGroup>-->
+
+  <ItemGroup>
+    <None Include="bin\Release\$(TargetFramework)\*.*" Pack="true" PackagePath="lib\$(TargetFramework)\" />
+
+ </ItemGroup>
   <ItemGroup>
     <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="runtimes\win-x64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
     <None Include="bin\Release\$(TargetFramework)\win-x86\publish\**\*.*" Pack="true" PackagePath="runtimes\win-x86\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\win-x86\publish\')" />
@@ -77,6 +74,14 @@
     <None Include="bin\Release\$(TargetFramework)\osx-arm64\publish\**\*.*" Pack="true" PackagePath="runtimes\osx-arm64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\osx-arm64\publish\')" />
     <None Include="bin\Release\$(TargetFramework)\win-arm64\publish\**\*.*" Pack="true" PackagePath="runtimes\win-arm64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\win-arm64\publish\')" />
     <None Include="bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\**\*.*" Pack="true" PackagePath="runtimes\linux-bionic-arm64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\linux-bionic-arm64\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\browser\publish\**\*.*" Pack="true" PackagePath="runtimes\browser\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\browser\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\browser-wasm\publish\**\*.*" Pack="true" PackagePath="runtimes\browser-wasm\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\browser-wasm\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\wasi\publish\**\*.*" Pack="true" PackagePath="runtimes\wasi\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\wasi\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\wasi-wasm\publish\**\*.*" Pack="true" PackagePath="runtimes\wasi-wasm\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\wasi-wasm\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\android\publish\**\*.*" Pack="true" PackagePath="runtimes\android\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\android\publish\')" />
+    <None Include="bin\Release\$(TargetFramework)\android-arm\publish\**\*.*" Pack="true" PackagePath="runtimes\android-arm\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\android-arm\publish\')" />
+
   </ItemGroup>
+
 
 </Project>
