@@ -147,8 +147,5 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount 
         UseLog = options.UseLog;
     }
 
-    /*public void CopyFrom(TaskRunnerOptions options)
-    {
 
-    }*/
 }

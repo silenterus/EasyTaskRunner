@@ -25,7 +25,7 @@ namespace EasyTaskRunner
             return runner;
         }
 
-        public string Fire(string name, RequestTaskFire fireCommand,int count)
+        public string Fire(string name, RequestTaskFire fireCommand, int count)
         {
             if (TryGetRunner(name, out var runner))
             {
@@ -34,6 +34,57 @@ namespace EasyTaskRunner
             }
             return $"Runner '{name}' not found.";
         }
+
+
+        public IEnumerable<TResult> GetResults<TResult>(string name)
+        {
+            if (TryGetRunner(name, out var runner))
+            {
+                if (runner is ITaskRunnerWithResult<TResult> runnerWithResult)
+                {
+                    return runnerWithResult.GetResults();
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Runner '{name}' does not return results of type {typeof(TResult).Name}.");
+                }
+            }
+            throw new KeyNotFoundException($"Runner '{name}' not found.");
+        }
+
+        public void ClearResults(string name)
+        {
+            if (TryGetRunner(name, out var runner))
+            {
+                if (runner is ITaskRunnerWithResult<object> runnerWithResult)
+                {
+                    runnerWithResult.ClearResults();
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Runner '{name}' does not support clearing results.");
+                }
+            }
+        }
+
+        // Add an overloaded Fire method to handle runners with parameters and return types
+        public string Fire(string name, RequestTaskFire fireCommand, int count, params object[] parameters)
+        {
+            if (TryGetRunner(name, out var runner))
+            {
+                if (runner is ITaskRunnerWithParam runnerWithParam)
+                {
+                    runnerWithParam.Fire(fireCommand, count, parameters);
+                }
+                else
+                {
+                    runner.Fire(fireCommand, count);
+                }
+                return runner.Status();
+            }
+            return $"Runner '{name}' not found.";
+        }
+
 
         public string GetStatus(string name)
         {
@@ -96,6 +147,8 @@ namespace EasyTaskRunner
                 runner.Fire(fireCommand);
             }
         }
+
+
 
         public string GetStatusAll()
         {

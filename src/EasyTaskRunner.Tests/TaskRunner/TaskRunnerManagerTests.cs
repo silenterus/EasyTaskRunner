@@ -61,7 +61,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             _taskRunnerManager.Add(runnerName, mockRunner);
 
             // Act
-            var status = _taskRunnerManager.Fire(runnerName, RequestTaskFire.Start);
+            var status = _taskRunnerManager.Fire(runnerName, RequestTaskFire.Start,1);
 
             // Assert
             Assert.Equal("Running", status);
@@ -323,7 +323,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var runnerName = "InvalidRunner";
 
             // Act
-            var status = _taskRunnerManager.Fire(runnerName, RequestTaskFire.Start);
+            var status = _taskRunnerManager.Fire(runnerName, RequestTaskFire.Start,1);
 
             // Assert
             Assert.Equal("Runner 'InvalidRunner' not found.", status); // Invalid runner should return error message

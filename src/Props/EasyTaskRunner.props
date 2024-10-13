@@ -8,6 +8,10 @@
     <IsPackable>true</IsPackable>
     <RuntimeIdentifiers>win-x64;win-x86;linux-x64;linux-arm;linux-arm64;osx-x64;osx-arm64;ios-arm64;android-arm64;win-arm64;linux-bionic-arm64;browser;browser-wasm;wasi;wasi-wasm;android;android-arm</RuntimeIdentifiers>
 
+<!--
+    <RuntimeIdentifiers>win-x64;win-x86;linux-x64;linux-arm;linux-arm64;osx-x64;osx-arm64;ios-arm64;android-arm64;win-arm64;linux-bionic-arm64;browser;browser-wasm;wasi;wasi-wasm;android;android-arm</RuntimeIdentifiers>
+-->
+
   </PropertyGroup>
 
 
