@@ -6,7 +6,6 @@ using EasyTaskRunner.Data.Utilities;
 namespace EasyTaskRunner.Core
 {
 
-
     public class TaskRunnerResult<TResult> : TaskRunnerBase<Func<TResult>>, ITaskRunnerWithResult<TResult>
     {
         private readonly ConcurrentBag<TResult> _results = new ConcurrentBag<TResult>();
@@ -64,7 +63,6 @@ namespace EasyTaskRunner.Core
             base.Fire(fire, count);
         }
 
-        // Implement ITaskRunnerWithResult<TResult>
         public IEnumerable<TResult> GetResults()
         {
             return _results.ToArray();
