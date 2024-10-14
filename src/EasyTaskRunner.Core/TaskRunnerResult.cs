@@ -53,10 +53,9 @@ namespace EasyTaskRunner.Core
             await Task.CompletedTask;
         }
 
-        // Implement ITaskRunnerWithParam
-        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[] parameters)
+        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[]? parameters)
         {
-            if (parameters != null && parameters.Length > 0)
+            if (parameters is { Length: > 0 })
             {
                 this.Parameter1 = (T)parameters[0];
             }
@@ -95,21 +94,19 @@ namespace EasyTaskRunner.Core
             await Task.CompletedTask;
         }
 
-        // Implement ITaskRunnerWithParam
-        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[] parameters)
+        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[]? parameters)
         {
-            if (parameters != null && parameters.Length > 0)
+            if (parameters is { Length: > 0 })
             {
                 this.Parameter1 = (T1)parameters[0];
             }
-            if (parameters != null && parameters.Length > 1)
+            if (parameters is { Length: > 1 })
             {
                 this.Parameter2 = (T2)parameters[1];
             }
             base.Fire(fire, count);
         }
 
-        // Implement ITaskRunnerWithResult<TResult>
         public IEnumerable<TResult> GetResults()
         {
             return _results.ToArray();
@@ -121,5 +118,4 @@ namespace EasyTaskRunner.Core
         }
     }
 
-    // Similarly for TaskRunnerResult<T, TResult> and TaskRunnerResult<T1, T2, TResult>
 }

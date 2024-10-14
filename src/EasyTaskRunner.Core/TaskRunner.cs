@@ -1,11 +1,9 @@
-﻿using System.Collections.Concurrent;
-using EasyTaskRunner.Data.Enums;
+﻿using EasyTaskRunner.Data.Enums;
 using EasyTaskRunner.Data.Interfaces;
 using EasyTaskRunner.Data.Utilities;
 
 namespace EasyTaskRunner.Core
 {
-    // Concrete implementation for Action
     public class TaskRunner : TaskRunnerBase<Action>, ITaskRunner
     {
         public TaskRunner(string name, Action execute, TaskRunnerOptions options)

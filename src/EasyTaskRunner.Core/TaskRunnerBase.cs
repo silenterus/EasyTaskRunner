@@ -44,12 +44,6 @@ namespace EasyTaskRunner.Core
             }
         }
 
-        /*internal protected TaskRunnerBase<TAction> SetOptions(TaskRunnerOptions options)
-        {
-
-
-            return this;
-        }*/
 
         public void GetLogs() { }
 
@@ -99,20 +93,14 @@ namespace EasyTaskRunner.Core
 
         private async Task UnPauseAsync()
         {
-            /*if (TaskStatus != RequestTaskStatus.Paused)
-            {
-                return;
-            }*/
+
             IsPaused = false;
             await Task.Yield();
         }
 
         private async Task PauseAsync()
         {
-            /*if (TaskStatus != RequestTaskStatus.Running)
-            {
-                return;
-            }*/
+
             IsPaused = true;
             await Task.Yield();
         }
@@ -485,7 +473,7 @@ namespace EasyTaskRunner.Core
             }
             finally
             {
-                semaphore.Release(); // Ensure semaphore is released even if task fails
+                semaphore.Release();
             }
         }
     }
