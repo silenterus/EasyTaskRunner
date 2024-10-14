@@ -1,15 +1,178 @@
 ﻿using System.Collections.Concurrent;
 using System.Text;
-using EasyTaskRunner.Data.Enums;
-using EasyTaskRunner.Data.Interfaces;
+
 
 namespace EasyTaskRunner
 {
     using Core;
+    using Data.Events;
     using Data.Utilities;
+
+    using EasyTaskRunner.Data.Enums;
+    using EasyTaskRunner.Data.Interfaces;
     public class TaskRunnerManager
     {
         private readonly ConcurrentDictionary<string, ITaskRunner> _runners = new ConcurrentDictionary<string, ITaskRunner>();
+
+        public event EventHandler<TaskEventArgs>? TaskRegistered;
+        public event EventHandler<TaskEventArgs>? TaskUnregistered;
+        private TimeSpan _pollingInterval = TimeSpan.FromSeconds(1);
+        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private Task? _monitoringTask;
+        private readonly object _monitorLock = new object();
+        private readonly Dictionary<string, ITaskRunner> _taskSnapshot = new Dictionary<string, ITaskRunner>();
+
+
+        public TaskRunnerManager(bool startMonitor = false, float pollingInterval = 1f)
+        {
+            if (pollingInterval > 0)
+            {
+                _pollingInterval = TimeSpan.FromSeconds(pollingInterval);
+            }
+
+            if (startMonitor)
+            {
+                StartMonitoring();
+            }
+        }
+        public void StopMonitoring()
+        {
+            lock (_monitorLock)
+            {
+                if (_cancellationTokenSource.IsCancellationRequested)
+                {
+                    Console.WriteLine("Monitoring is already stopped.");
+                    return;
+                }
+
+                _cancellationTokenSource.Cancel();
+                Console.WriteLine("Stopping monitoring tasks.");
+
+                try
+                {
+                    _monitoringTask?.Wait();
+                    Console.WriteLine("Monitoring tasks stopped.");
+                }
+                catch (AggregateException ex) when (ex.InnerExceptions.All(e => e is TaskCanceledException))
+                {
+                    // Expected when the task is canceled
+                }
+                finally
+                {
+                    _cancellationTokenSource.Dispose();
+                    _monitoringTask = null;
+                }
+            }
+        }
+
+        public void StartMonitoring()
+        {
+            lock (_monitorLock)
+            {
+                if (_monitoringTask != null && !_monitoringTask.IsCompleted)
+                {
+                    Console.WriteLine("Monitoring is already running.");
+                    return;
+                }
+
+                // Dispose the previous token source if it's not already cancelled
+                if (!_cancellationTokenSource.IsCancellationRequested)
+                {
+                    _cancellationTokenSource.Cancel();
+                    _cancellationTokenSource.Dispose();
+                }
+
+                // Create a new CancellationTokenSource for the new monitoring task
+                _cancellationTokenSource = new CancellationTokenSource();
+                CancellationToken token = _cancellationTokenSource.Token;
+
+                // Start the monitoring task
+                _monitoringTask = Task.Run(() => MonitorTaskChangesAsync(token), token);
+                Console.WriteLine("Started monitoring tasks.");
+            }
+        }
+
+        public bool RegisterTask(string name, ITaskRunner runner)
+        {
+            if (!_runners.TryAdd(name, runner))
+            {
+                return false;
+            }
+
+            _taskSnapshot[name] = runner;
+            TaskRegistered?.Invoke(this, new TaskEventArgs(name, runner));
+            return true;
+        }
+
+        public bool UnregisterTask(string name)
+        {
+            if (!_runners.TryRemove(name, out var runner))
+            {
+                return false;
+            }
+
+            runner.Fire(RequestTaskFire.Stop);
+            _taskSnapshot.Remove(name);
+            TaskUnregistered?.Invoke(this, new TaskEventArgs(name, runner));
+            return true;
+        }
+
+        private async Task MonitorTaskChangesAsync(CancellationToken token)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                try
+                {
+                    await Task.Delay(_pollingInterval, token);
+
+                    var currentTasks = _runners.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+                    foreach (var kvp in currentTasks)
+                    {
+                        if (_taskSnapshot.ContainsKey(kvp.Key))
+                        {
+                            continue;
+                        }
+
+                        OnTaskChanged(kvp.Key, null, kvp.Value);
+                        _taskSnapshot[kvp.Key] = kvp.Value;
+                    }
+
+                    var removedTasks = _taskSnapshot.Keys.Except(currentTasks.Keys).ToList();
+                    foreach (var name in removedTasks)
+                    {
+                        OnTaskChanged(name, _taskSnapshot[name], null);
+                        _taskSnapshot.Remove(name);
+                    }
+                }
+                catch (TaskCanceledException)
+                {
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error in MonitorTaskChangesAsync: " + ex.Message);
+                }
+            }
+        }
+
+        private void OnTaskChanged(string taskName, ITaskRunner? oldTask, ITaskRunner? newTask)
+        {
+            if (oldTask == null && newTask != null)
+            {
+                Console.WriteLine($"Task '{taskName}' has been registered.");
+                TaskRegistered?.Invoke(this, new TaskEventArgs(taskName, newTask));
+            }
+            else if (oldTask != null && newTask == null)
+            {
+                Console.WriteLine($"Task '{taskName}' has been unregistered.");
+                TaskUnregistered?.Invoke(this, new TaskEventArgs(taskName, oldTask));
+            }
+            else
+            {
+                // Task updated (if necessary)
+            }
+        }
 
 
         public bool Add(string name, ITaskRunner runner)
@@ -27,6 +190,8 @@ namespace EasyTaskRunner
             _runners.TryGetValue(name, out var runner);
             return runner;
         }
+
+
 
         public bool Add(string name, Action execute, TaskRunnerOptions? options = null)
         {
@@ -64,7 +229,6 @@ namespace EasyTaskRunner
             return _runners.TryAdd(name, runner);
         }
 
-
         public string Fire(string name, RequestTaskFire fireCommand, int count, params object[]? parameters)
         {
             if (!TryGetRunner(name, out var runner))
@@ -79,6 +243,7 @@ namespace EasyTaskRunner
                     runnerWithParam.Fire(fireCommand, count, parameters);
                 }
             }
+
             else
             {
                 runner.Fire(fireCommand, count);
