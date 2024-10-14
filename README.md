@@ -5,9 +5,6 @@
 
 Simple TaskRunner for SqlAutoGen Generated Code
 
-## License
-
-This software is released under the [BSD-2-Clause license](https://opensource.org/licenses/BSD-2-Clause). 
 
 ## Author
 
