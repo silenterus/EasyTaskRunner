@@ -268,6 +268,17 @@ namespace EasyTaskRunner
             }
         }
 
+        public void ClearAll()
+        {
+            foreach (var runner in _runners.Values)
+            {
+                if (runner is ITaskRunnerWithResult<object> runnerWithResult)
+                {
+                    runnerWithResult.ClearResults();
+                }
+            }
+        }
+
         public void ClearResults(string name)
         {
             if (TryGetRunner(name, out var runner))
@@ -282,6 +293,7 @@ namespace EasyTaskRunner
                 }
             }
         }
+
 
 
         public string GetStatus(string name)
@@ -355,10 +367,184 @@ namespace EasyTaskRunner
             foreach (var kvp in _runners)
             {
                 string status = kvp.Value.Status();
-                statusBuilder.AppendLine($"{status}");
+                statusBuilder.AppendLine($"{kvp.Key}:[{status}] [{kvp.Value.GetTaskStatus()}]");
             }
 
             return statusBuilder.ToString();
         }
+
+
+
+
+        public void Fire(string name, RequestTaskFire fire)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                Console.WriteLine($"Runner '{name}' not found.");
+                return;
+            }
+
+            runner.Fire(fire);
+        }
+
+        public void Fire(string name, RequestTaskFire fire, TaskRunnerOptions options)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                Console.WriteLine($"Runner '{name}' not found.");
+                return;
+            }
+
+            runner.Fire(fire, options);
+        }
+
+        public void Fire(string name, RequestTaskFire fire, int count)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                Console.WriteLine($"Runner '{name}' not found.");
+                return;
+            }
+
+            runner.Fire(fire, count);
+        }
+
+        public void Fire(string name, RequestTaskFire fire, int count, int maxParallel)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                Console.WriteLine($"Runner '{name}' not found.");
+                return;
+            }
+
+            runner.Fire(fire, count, maxParallel);
+        }
+
+        public void Fire(string name, RequestTaskFire fire, int count, int maxParallel, int maxParallelCount)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                Console.WriteLine($"Runner '{name}' not found.");
+                return;
+            }
+
+            runner.Fire(fire, count, maxParallel, maxParallelCount);
+        }
+
+
+
+        public void SetParam<T>(string name, T parameter)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                throw new KeyNotFoundException($"Runner '{name}' not found.");
+            }
+
+            if (runner is TaskRunner<T> runnerWithParam)
+            {
+                runnerWithParam.SetParameter(parameter);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Runner '{name}' does not accept a parameter of type {typeof(T).Name}.");
+            }
+        }
+
+        public void SetParam<T1, T2, T3>(string name, T1 parameter1, T2 parameter2)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                throw new KeyNotFoundException($"Runner '{name}' not found.");
+            }
+            if (runner is TaskRunnerResult<T1, T2,T3> runnerWithResult)
+            {
+                runnerWithResult.SetParameters(parameter1,parameter2);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Runner '{name}' does not accept parameters of types {typeof(T1).Name}, {typeof(T2).Name}.");
+            }
+        }
+
+
+        public void SetParam<T1, T2>(string name, T1 parameter1, T2 parameter2)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                throw new KeyNotFoundException($"Runner '{name}' not found.");
+            }
+
+            if (runner is TaskRunner<T1, T2> runnerWithParams)
+            {
+                runnerWithParams.SetParameters(parameter1, parameter2);
+            }
+            else if (runner is TaskRunnerResult<T1, T2> runnerWithResult)
+            {
+                runnerWithResult.SetParameters(parameter1);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Runner '{name}' does not accept parameters of types {typeof(T1).Name}, {typeof(T2).Name}.");
+            }
+        }
+
+        public void SetParam<T>(string name, Func<T> parameterProvider)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                throw new KeyNotFoundException($"Runner '{name}' not found.");
+            }
+
+            if (runner is TaskRunner<T> runnerWithParam)
+            {
+                runnerWithParam.SetParameter(parameterProvider());
+            }
+            else
+            {
+                throw new InvalidOperationException($"Runner '{name}' does not accept a parameter of type {typeof(T).Name}.");
+            }
+        }
+
+        public void SetParam<T1, T2>(string name, Func<T1> parameterProvider1, Func<T2> parameterProvider2)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                throw new KeyNotFoundException($"Runner '{name}' not found.");
+            }
+
+            if (runner is TaskRunner<T1, T2> runnerWithParams)
+            {
+                runnerWithParams.SetParameters(parameterProvider1(), parameterProvider2());
+            }
+            else
+            {
+                throw new InvalidOperationException($"Runner '{name}' does not accept parameters of types {typeof(T1).Name}, {typeof(T2).Name}.");
+            }
+        }
+        public void SetOptions(string name, TaskRunnerOptions options)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                Console.WriteLine($"Runner '{name}' not found.");
+                return;
+            }
+
+            runner.SetOptions(options);
+        }
+
+        public void GetLogs(string name)
+        {
+            if (!TryGetRunner(name, out var runner))
+            {
+                Console.WriteLine($"Runner '{name}' not found.");
+                return;
+            }
+
+            runner.GetLogs();
+        }
+
+
+
+
     }
 }

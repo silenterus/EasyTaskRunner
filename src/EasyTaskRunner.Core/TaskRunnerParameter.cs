@@ -1,29 +1,30 @@
-﻿using EasyTaskRunner.Data.Enums;
-using EasyTaskRunner.Data.Utilities;
-
-namespace EasyTaskRunner.Core;
-
-using Data.Interfaces;
-public class TaskRunner<T>(string name, Action<T> execute, TaskRunnerOptions options, T parameter)
-    : TaskRunnerBase<Action<T>>(name, execute, options), ITaskRunnerWithParam
+﻿namespace EasyTaskRunner.Core
 {
-        private T Parameter1 { get; set; } = parameter;
+    using Data.Interfaces;
+    using Data.Enums;
+    using Data.Utilities;
+
+    public class TaskRunner<T> : TaskRunnerBase<Action<T>>, ITaskRunnerWithParam
+    {
+        private T Parameter1 { get; set; }
+
+        public TaskRunner(string name, Action<T> execute, TaskRunnerOptions options, T parameter)
+            : base(name, execute, options)
+        {
+            Parameter1 = parameter;
+        }
+
+        public void SetParameter(T parameter)
+        {
+            Parameter1 = parameter;
+        }
 
         void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[]? parameters)
         {
             if (parameters is { Length: > 0 })
             {
-                this.Parameter1 = (T)parameters[0];
+                Parameter1 = (T)parameters[0];
             }
-            base.Fire(fire, count);
-        }
-        public void Fire(RequestTaskFire fire, T? parameter1, int count)
-        {
-            if (parameter1 != null)
-            {
-                this.Parameter1 = parameter1;
-            }
-
             base.Fire(fire, count);
         }
 
@@ -34,34 +35,34 @@ public class TaskRunner<T>(string name, Action<T> execute, TaskRunnerOptions opt
         }
     }
 
-    public class TaskRunner<T1, T2>(string name, Action<T1, T2> execute, TaskRunnerOptions options, T1 parameter1, T2 parameter2)
-        : TaskRunnerBase<Action<T1, T2>>(name, execute, options), ITaskRunnerWithParam
+    public class TaskRunner<T1, T2> : TaskRunnerBase<Action<T1, T2>>, ITaskRunnerWithParam
     {
-        private T1 Parameter1 { get; set; } = parameter1;
-        private T2 Parameter2 { get; set; } = parameter2;
+        private T1 Parameter1 { get; set; }
+        private T2 Parameter2 { get; set; }
 
-        public void Fire(RequestTaskFire fire, T1? parameter1, int count)
+        public TaskRunner(string name, Action<T1, T2> execute, TaskRunnerOptions options, T1 parameter1, T2 parameter2)
+            : base(name, execute, options)
         {
-            if (parameter1 != null)
-            {
-                this.Parameter1 = parameter1;
-            }
-
-            base.Fire(fire, count);
+            Parameter1 = parameter1;
+            Parameter2 = parameter2;
         }
 
-        public void Fire(RequestTaskFire fire, T1? parameter1, T2? parameter2, int count)
+        public void SetParameters(T1 parameter1, T2 parameter2)
         {
-            if (parameter1 != null)
-            {
-                this.Parameter1 = parameter1;
-            }
+            Parameter1 = parameter1;
+            Parameter2 = parameter2;
+        }
 
-            if (parameter2 != null)
+        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[]? parameters)
+        {
+            if (parameters is { Length: > 0 })
             {
-                this.Parameter2 = parameter2;
+                Parameter1 = (T1)parameters[0];
             }
-
+            if (parameters is { Length: > 1 })
+            {
+                Parameter2 = (T2)parameters[1];
+            }
             base.Fire(fire, count);
         }
 
@@ -70,19 +71,5 @@ public class TaskRunner<T>(string name, Action<T> execute, TaskRunnerOptions opt
             Execute(Parameter1, Parameter2);
             await Task.CompletedTask;
         }
-
-
-        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[]? parameters)
-        {
-            if (parameters is { Length: > 0 })
-            {
-                this.Parameter1 = (T1)parameters[0];
-            }
-            if (parameters is { Length: > 1 })
-            {
-                this.Parameter2 = (T2)parameters[1];
-            }
-            base.Fire(fire, count);
-        }
     }
-
+}

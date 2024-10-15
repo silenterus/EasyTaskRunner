@@ -46,6 +46,11 @@ namespace EasyTaskRunner.Core
             this.Parameter1 = parameter;
         }
 
+        public void SetParameters(T parameter)
+        {
+            Parameter1 = parameter;
+        }
+
         protected override async Task ExecuteTaskAsync(CancellationToken token)
         {
             var result = Execute(Parameter1);
@@ -85,6 +90,12 @@ namespace EasyTaskRunner.Core
         {
             this.Parameter1 = parameter1;
             this.Parameter2 = parameter2;
+        }
+
+        public void SetParameters(T1 parameter1, T2 parameter2)
+        {
+            Parameter1 = parameter1;
+            Parameter2 = parameter2;
         }
 
         protected override async Task ExecuteTaskAsync(CancellationToken token)
