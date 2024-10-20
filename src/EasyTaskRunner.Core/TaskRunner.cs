@@ -17,9 +17,11 @@ namespace EasyTaskRunner.Core
             Execute();
         }
 
-        public void FireWait(RequestTaskFire fire) { }
 
-        public ITaskRunner SetOptions(TaskRunnerOptions options) => null;
+        ITaskRunner ITaskRunner.SetOptions(TaskRunnerOptions options) => this.SetOptions(options);
+
+        //public ITaskRunner SetOptions(TaskRunnerOptions options) => null;
+
     }
 
 

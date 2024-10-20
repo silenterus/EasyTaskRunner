@@ -339,25 +339,7 @@ namespace EasyTaskRunner.Core
             };
         }
 
-        /*private protected virtual string Status(RequestTaskStatus status, bool useDelay = false)
-        {
-            if (useDelay)
-            {
-                Task.Delay(500).Wait();
-            }
-            return status switch
-            {
-                RequestTaskStatus.NotStarted => $"'{Name}' not started yet. - {StatusCount()}",
-                RequestTaskStatus.Running => $"'{Name}' is currently running. - {StatusCount()}",
-                RequestTaskStatus.Stopped => $"'{Name}' is stopped. - {StatusCount()}",
-                RequestTaskStatus.Stopping => $"'{Name}' is stopping. - {StatusCount()}",
-                RequestTaskStatus.Completed => $"'{Name}' has completed execution. - {StatusCount()}",
-                RequestTaskStatus.Canceled => $"'{Name}' was cancelled. - {StatusCount()}",
-                RequestTaskStatus.Faulted => $"'{Name}' faulted!!! - {StatusCount()}",
-                RequestTaskStatus.Paused => $"'{Name}' is paused. - {StatusCount()}",
-                _ => $"Unknown status. - {StatusCount()}"
-            };
-        }*/
+
 
         public string Status(bool useDelay)
         {

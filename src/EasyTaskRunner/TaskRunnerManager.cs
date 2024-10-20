@@ -16,6 +16,16 @@ namespace EasyTaskRunner
 
         public event EventHandler<TaskEventArgs>? TaskRegistered;
         public event EventHandler<TaskEventArgs>? TaskUnregistered;
+
+        public event EventHandler<TaskEventArgs>? ResultAdded;
+        public event EventHandler<TaskEventArgs>? ParameterChanged;
+
+        public event EventHandler<TaskEventArgs>? OnSucceed;
+        public event EventHandler<TaskEventArgs>? OnError;
+
+        public event EventHandler<TaskEventArgs>? OnAbort;
+
+
         private TimeSpan _pollingInterval = TimeSpan.FromSeconds(1);
         private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
         private Task? _monitoringTask;
@@ -281,16 +291,18 @@ namespace EasyTaskRunner
 
         public void ClearResults(string name)
         {
-            if (TryGetRunner(name, out var runner))
+            if (!TryGetRunner(name, out var runner))
             {
-                if (runner is ITaskRunnerWithResult<object> runnerWithResult)
-                {
-                    runnerWithResult.ClearResults();
-                }
-                else
-                {
-                    throw new InvalidOperationException($"Runner '{name}' does not support clearing results.");
-                }
+                return;
+            }
+
+            if (runner is ITaskRunnerWithResult<object> runnerWithResult)
+            {
+                runnerWithResult.ClearResults();
+            }
+            else
+            {
+                throw new InvalidOperationException($"Runner '{name}' does not support clearing results.");
             }
         }
 

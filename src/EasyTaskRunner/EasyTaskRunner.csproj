@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\Props\EasyTaskRunner.props" />
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <PackageId>EasyTaskRunner</PackageId>
-<!--
     <RuntimeIdentifiers>win-x64;win-x86;linux-x64;linux-arm;linux-arm64;osx-x64;osx-arm64;ios-arm64;android-arm64;win-arm64;linux-bionic-arm64</RuntimeIdentifiers>
--->
+
     <Configurations>Debug;Release</Configurations>
     <Platforms>AnyCPU</Platforms>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -49,21 +47,52 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EasyTaskRunner.Data\EasyTaskRunner.Data.csproj" />
-    <ProjectReference Include="..\EasyTaskRunner.Extensions\EasyTaskRunner.Extensions.csproj" />
     <ProjectReference Include="..\EasyTaskRunner.Core\EasyTaskRunner.Core.csproj" />
   </ItemGroup>
 
-<!--
   <ItemGroup>
-    <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="tools\win-x64\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
 
-</ItemGroup>-->
+    <None Visible="false" Include="$(MSBuildThisFileDirectory)../../README.md" Pack="true" PackagePath="/" />
+    <None Visible="false" Include="$(MSBuildThisFileDirectory)../../CHANGELOG.md" Pack="true" PackagePath="/" />
+
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.Analyzers" Version="4.12.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0-2.final" PrivateAssets="all" />
+  </ItemGroup>
+
+
+  <!--
+    <ItemGroup>
+      <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="tools\win-x64\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
+
+  </ItemGroup>-->
 
   <ItemGroup>
     <None Include="bin\Release\$(TargetFramework)\*.*" Pack="true" PackagePath="lib\$(TargetFramework)\" />
-
  </ItemGroup>
+
   <ItemGroup>
     <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="runtimes\win-x64\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
     <None Include="bin\Release\$(TargetFramework)\win-x86\publish\**\*.*" Pack="true" PackagePath="runtimes\win-x86\lib\netstandard2.1\" Condition="Exists('bin\Release\$(TargetFramework)\win-x86\publish\')" />
