@@ -379,7 +379,9 @@ namespace EasyTaskRunner.Core
                 }
                 else
                 {
-                    ExecuteTaskParallel(token, _options.MaxParallel).Wait(token);
+                    ExecuteTaskParallelSemaphor(token, _options.MaxParallel, _options.MaxCount).Wait(token);
+
+                    //ExecuteTaskParallel(token, _options.MaxParallel).Wait(token);
                 }
             }
             else
@@ -425,8 +427,7 @@ namespace EasyTaskRunner.Core
         private async Task ExecuteTaskParallelSemaphor(CancellationToken token, int maxParallel, int maxCount)
         {
             var tasks = new List<Task>();
-
-            using var semaphore = new SemaphoreSlim(maxParallel, maxParallel);
+            var semaphore = new SemaphoreSlim(maxParallel, maxParallel);
 
             for (int i = 0; i < maxCount; i++)
             {
