@@ -18,7 +18,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             testOutputHelper.WriteLine($"{msg} - executionCount:[{_executionCount}] count:[{count}]");
         }
 
-        private void Log(RequestTaskFire status, int count, string msg = "")
+        private void Log(TaskFire status, int count, string msg = "")
         {
             if (!_logActive)
                 return;
@@ -70,9 +70,9 @@ namespace EasyTaskRunner.Tests.TaskRunner
             _executionCount = 0;
             var taskRunner = TaskRunnerHelper.CreateAndStart<Core.TaskRunner, Action>(name, SampleExecution, TaskRunnerHelper.CreateOptions(count: count, maxParallel: 0, endless: false, delay: 500));
 
-            await Task.Run(() => taskRunner.Fire(RequestTaskFire.Start));
+            await Task.Run(() => taskRunner.Fire(TaskFire.Start));
             await Task.Delay(100);
-            await Task.Run(() => taskRunner.Fire(RequestTaskFire.Start));
+            await Task.Run(() => taskRunner.Fire(TaskFire.Start));
 
             Assert.Contains("running", taskRunner.Status());
         }
@@ -119,7 +119,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var options = TaskRunnerHelper.CreateOptions(count: 1, maxParallel: 0, endless: false, delay: 0);
             var taskRunner = TaskRunnerHelper.Create<Core.TaskRunner, Action>(name, SampleExecution, options);
 
-            taskRunner.Fire(RequestTaskFire.FireWait);
+            taskRunner.Fire(TaskFire.FireWait);
             var status = taskRunner.Status();
             await Task.Delay(500);
 
@@ -150,7 +150,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             _executionCount = 0;
             var options = TaskRunnerHelper.CreateOptions(count: 5, maxParallel: 0, endless: false, delay: 100);
             var taskRunner = TaskRunnerHelper.Create<Core.TaskRunner, Action>(name, SampleExecution, options);
-            taskRunner.Fire(RequestTaskFire.Fire);
+            taskRunner.Fire(TaskFire.Fire);
             await Task.Delay(500);
 
             Assert.Equal(1, _executionCount);
@@ -205,15 +205,15 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var options = TaskRunnerHelper.CreateOptions(count: 5, maxParallel: 0, endless: false, delay: 200);
             var taskRunner = TaskRunnerHelper.CreateAndStart<Core.TaskRunner, Action>(name, SampleExecution, options);
 
-            Log(RequestTaskFire.Start, count: options.Count);
+            Log(TaskFire.Start, count: options.Count);
             await Task.Delay(100);
             await TaskRunnerHelper.TogglePauseAsync(taskRunner);
-            Log(RequestTaskFire.Pause, count: options.Count, "Before");
+            Log(TaskFire.Pause, count: options.Count, "Before");
             await Task.Delay(1000);
             await TaskRunnerHelper.TogglePauseAsync(taskRunner);
-            Log(RequestTaskFire.Pause, count: options.Count);
+            Log(TaskFire.Pause, count: options.Count);
             await Task.Delay(80);
-            Log(RequestTaskFire.Pause, count: options.Count, "Delay");
+            Log(TaskFire.Pause, count: options.Count, "Delay");
 
             Assert.True(_executionCount > 1);
             Assert.Contains("running", TaskRunnerHelper.GetStatus(taskRunner));
@@ -383,7 +383,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: 0, maxCount: 0, endless: false, delay: 200);
             var taskRunner = TaskRunnerHelper.CreateAndStart<Core.TaskRunner, Action>(name, SampleExecution, options);
 
-            taskRunner.Fire(RequestTaskFire.Start);
+            taskRunner.Fire(TaskFire.Start);
             await Task.Delay(100);
             await TaskRunnerHelper.TogglePauseAsync(taskRunner);
 
@@ -405,7 +405,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: 0, maxCount: 0, endless: false, delay: 200);
             var taskRunner = TaskRunnerHelper.CreateAndStart<Core.TaskRunner, Action>(name, SampleExecution, options);
 
-            taskRunner.Fire(RequestTaskFire.Start);
+            taskRunner.Fire(TaskFire.Start);
             await Task.Delay(100);
             await TaskRunnerHelper.TogglePauseAsync(taskRunner);
 

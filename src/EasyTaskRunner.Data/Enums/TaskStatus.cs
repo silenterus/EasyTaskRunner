@@ -1,6 +1,6 @@
 ﻿namespace EasyTaskRunner.Data.Enums;
 
-public enum RequestTaskStatus
+public enum TaskStatus
 {
     JustInited,
     NotStarted,

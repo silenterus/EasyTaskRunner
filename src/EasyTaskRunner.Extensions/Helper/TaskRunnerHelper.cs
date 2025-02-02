@@ -37,28 +37,28 @@ namespace EasyTaskRunner.Extensions.Helper
             where TAction : Delegate
         {
             var taskRunner = Create<TTaskRunner, TAction>(name, action, options, count, maxParallel, endless, delay);
-            taskRunner.Fire(RequestTaskFire.Start);
+            taskRunner.Fire(TaskFire.Start);
             return taskRunner;
         }
 
         public static async Task StopAsync<TTaskRunner>(TTaskRunner taskRunner)
             where TTaskRunner : ITaskRunner
         {
-            taskRunner.Fire(RequestTaskFire.Stop);
+            taskRunner.Fire(TaskFire.Stop);
             await Task.Yield();
         }
 
         public static async Task TogglePauseAsync<TTaskRunner>(TTaskRunner taskRunner)
             where TTaskRunner : ITaskRunner
         {
-            taskRunner.Fire(RequestTaskFire.Toggle);
+            taskRunner.Fire(TaskFire.Toggle);
             await Task.Yield();
         }
 
         public static void Restart<TTaskRunner>(TTaskRunner taskRunner)
             where TTaskRunner : ITaskRunner
         {
-            taskRunner.Fire(RequestTaskFire.Restart);
+            taskRunner.Fire(TaskFire.Restart);
         }
 
         public static string GetStatus<TTaskRunner>(TTaskRunner taskRunner)
@@ -83,7 +83,7 @@ namespace EasyTaskRunner.Extensions.Helper
             }
         }
 
-        public static TTaskRunner CreateAndFire<TTaskRunner, TAction>(string name, TAction action, RequestTaskFire fire, TaskRunnerOptions options)
+        public static TTaskRunner CreateAndFire<TTaskRunner, TAction>(string name, TAction action, TaskFire fire, TaskRunnerOptions options)
             where TTaskRunner : ITaskRunner
             where TAction : Delegate
         {

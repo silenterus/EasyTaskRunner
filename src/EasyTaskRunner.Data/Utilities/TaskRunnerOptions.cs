@@ -6,13 +6,11 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount 
     public int Delay { get; private set; } = delay;
     public bool Endless { get; private set; } = endless;
     public bool AsyncRunners { get; private set; } = false;
-
     public ErrorCounter ErrorCount { get; private set; } = new ErrorCounter();
     public int MaxParallel { get; private set; } = maxParallel;
 
     public int MaxCount { get; private set; } = maxCount;
 
-    public bool UseSemaphore { get; private set; } = useSemaphore;
     public bool UseLog { get; private set; } = useLog;
 
     public TaskRunnerOptions SetDelay(int delay)
@@ -33,11 +31,7 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount 
         return this;
     }
 
-    public TaskRunnerOptions SetUseSemaphore(bool activate)
-    {
-        UseSemaphore = activate;
-        return this;
-    }
+
 
     public TaskRunnerOptions SetErrors((string name, int maxError)[] errors)
     {
@@ -143,7 +137,6 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount 
         ErrorCount = new ErrorCounter();
         MaxParallel = options.MaxParallel;
         MaxCount = options.MaxCount;
-        UseSemaphore = options.UseSemaphore;
         UseLog = options.UseLog;
     }
 

@@ -7,6 +7,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
 {
     using Data.Utilities;
     using Helper;
+    using TaskStatus = Data.Enums.TaskStatus;
     public class TaskRunnerManagerTests
     {
         private readonly TaskRunnerManager _taskRunnerManager;
@@ -60,7 +61,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             _taskRunnerManager.Add(runnerName, mockRunner);
 
             // Act
-            _taskRunnerManager.Fire(runnerName, RequestTaskFire.Start,1);
+            _taskRunnerManager.Fire(runnerName, TaskFire.Start,1);
 
             // Assert
             Assert.Equal("Running", _taskRunnerManager.GetStatus(runnerName));
@@ -327,7 +328,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var runnerName = "InvalidRunner";
 
             // Act
-             _taskRunnerManager.Fire(runnerName, RequestTaskFire.Start,1);
+             _taskRunnerManager.Fire(runnerName, TaskFire.Start,1);
 
 
             // Assert
@@ -436,26 +437,26 @@ namespace EasyTaskRunner.Tests.TaskRunner
     // Mock implementation of ITaskRunner to simulate task runners in tests
     public class MockTaskRunner : ITaskRunner
     {
-        private RequestTaskFire _currentStatus = RequestTaskFire.Idle;
+        private TaskFire _currentStatus = TaskFire.Idle;
 
-        public void Fire(RequestTaskFire command)
+        public void Fire(TaskFire command)
         {
             _currentStatus = command;
         }
 
-        public void Fire(RequestTaskFire fire, TaskRunnerOptions options)
+        public void Fire(TaskFire fire, TaskRunnerOptions options)
         {
         }
 
-        public void Fire(RequestTaskFire fire, int count)
+        public void Fire(TaskFire fire, int count)
         {
         }
 
-        public void Fire(RequestTaskFire fire, int count, int maxParallel)
+        public void Fire(TaskFire fire, int count, int maxParallel)
         {
         }
 
-        public void Fire(RequestTaskFire fire, int count, int maxParallel, int maxParallelCount)
+        public void Fire(TaskFire fire, int count, int maxParallel, int maxParallelCount)
         {
         }
 
@@ -463,17 +464,17 @@ namespace EasyTaskRunner.Tests.TaskRunner
         {
             return _currentStatus switch
             {
-                RequestTaskFire.Start => "Running",
-                RequestTaskFire.Stop => "Stopped",
-                RequestTaskFire.Pause => "Paused",
-                RequestTaskFire.UnPause => "Running",
+                TaskFire.Start => "Running",
+                TaskFire.Stop => "Stopped",
+                TaskFire.Pause => "Paused",
+                TaskFire.UnPause => "Running",
                 _ => "Idle"
             };
         }
 
-        public RequestTaskStatus GetTaskStatus()
+        public TaskStatus GetTaskStatus()
         {
-            return RequestTaskStatus.JustInited;
+            return TaskStatus.JustInited;
         }
 
         public ITaskRunner SetOptions(TaskRunnerOptions options)

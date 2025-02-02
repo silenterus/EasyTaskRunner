@@ -19,7 +19,7 @@
             Parameter1 = parameter;
         }
 
-        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[]? parameters)
+        void ITaskRunnerWithParam.Fire(TaskFire fire, int count, params object[]? parameters)
         {
             if (parameters is { Length: > 0 })
             {
@@ -53,7 +53,7 @@
             Parameter2 = parameter2;
         }
 
-        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[]? parameters)
+        void ITaskRunnerWithParam.Fire(TaskFire fire, int count, params object[]? parameters)
         {
             if (parameters is { Length: > 0 })
             {

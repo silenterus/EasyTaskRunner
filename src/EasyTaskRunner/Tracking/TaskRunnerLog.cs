@@ -19,9 +19,9 @@ public class TaskRunnerLogMessage
     public DateTime Timestamp { get; }
     public Exception? Exception { get; }
 
-    public RequestTaskStatus Status { get; }
+    public TaskStatus Status { get; }
 
-    public TaskRunnerLogMessage(TaskRunnerLogType logType, RequestTaskStatus status, string message, Exception? exception = null)
+    public TaskRunnerLogMessage(TaskRunnerLogType logType, TaskStatus status, string message, Exception? exception = null)
     {
         LogType = logType;
         Message = message;
@@ -40,7 +40,7 @@ public class TaskRunnerLogger
         _handlers.Add(handler);
     }
 
-    public void Log(TaskRunnerLogType logType, RequestTaskStatus status, string message, Exception? exception = null)
+    public void Log(TaskRunnerLogType logType, TaskStatus status, string message, Exception? exception = null)
     {
         var logMessage = new TaskRunnerLogMessage(logType, status, message, exception);
         foreach (var handler in _handlers)

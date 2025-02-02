@@ -58,7 +58,7 @@ namespace EasyTaskRunner.Core
             await Task.CompletedTask;
         }
 
-        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[]? parameters)
+        void ITaskRunnerWithParam.Fire(TaskFire fire, int count, params object[]? parameters)
         {
             if (parameters is { Length: > 0 })
             {
@@ -105,7 +105,7 @@ namespace EasyTaskRunner.Core
             await Task.CompletedTask;
         }
 
-        void ITaskRunnerWithParam.Fire(RequestTaskFire fire, int count, params object[]? parameters)
+        void ITaskRunnerWithParam.Fire(TaskFire fire, int count, params object[]? parameters)
         {
             if (parameters is { Length: > 0 })
             {

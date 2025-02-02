@@ -1,6 +1,6 @@
 ﻿namespace EasyTaskRunner.Data.Enums;
 
-public enum RequestTaskType
+public enum TaskType
 {
     None,
     Run,

@@ -121,7 +121,7 @@ namespace EasyTaskRunner
                 return false;
             }
 
-            runner.Fire(RequestTaskFire.Stop);
+            runner.Fire(TaskFire.Stop);
             _taskSnapshot.Remove(name);
             TaskUnregistered?.Invoke(this, new TaskEventArgs(name, runner));
             return true;
@@ -239,7 +239,7 @@ namespace EasyTaskRunner
             return _runners.TryAdd(name, runner);
         }
 
-        public string Fire(string name, RequestTaskFire fireCommand, int count, params object[]? parameters)
+        public string Fire(string name, TaskFire fireCommand, int count, params object[]? parameters)
         {
             if (!TryGetRunner(name, out var runner))
             {
@@ -319,42 +319,42 @@ namespace EasyTaskRunner
 
         public void Start(string name)
         {
-            Fire(name, RequestTaskFire.Start,0);
+            Fire(name, TaskFire.Start,0);
         }
 
         public void Stop(string name)
         {
-            Fire(name, RequestTaskFire.Stop,0);
+            Fire(name, TaskFire.Stop,0);
         }
 
         public void Pause(string name)
         {
-            Fire(name, RequestTaskFire.Pause,0);
+            Fire(name, TaskFire.Pause,0);
         }
 
         public void Resume(string name)
         {
-            Fire(name, RequestTaskFire.UnPause,0);
+            Fire(name, TaskFire.UnPause,0);
         }
 
         public void StartAll()
         {
-            FireAll(RequestTaskFire.Start);
+            FireAll(TaskFire.Start);
         }
 
         public void StopAll()
         {
-            FireAll(RequestTaskFire.Stop);
+            FireAll(TaskFire.Stop);
         }
 
         public void PauseAll()
         {
-            FireAll(RequestTaskFire.Pause);
+            FireAll(TaskFire.Pause);
         }
 
         public void ResumeAll()
         {
-            FireAll(RequestTaskFire.UnPause);
+            FireAll(TaskFire.UnPause);
         }
 
         private bool TryGetRunner(string name, out ITaskRunner runner)
@@ -362,7 +362,7 @@ namespace EasyTaskRunner
             return _runners.TryGetValue(name, out runner);
         }
 
-        private void FireAll(RequestTaskFire fireCommand)
+        private void FireAll(TaskFire fireCommand)
         {
             foreach (var runner in _runners.Values)
             {
@@ -388,7 +388,7 @@ namespace EasyTaskRunner
 
 
 
-        public void Fire(string name, RequestTaskFire fire)
+        public void Fire(string name, TaskFire fire)
         {
             if (!TryGetRunner(name, out var runner))
             {
@@ -399,7 +399,7 @@ namespace EasyTaskRunner
             runner.Fire(fire);
         }
 
-        public void Fire(string name, RequestTaskFire fire, TaskRunnerOptions options)
+        public void Fire(string name, TaskFire fire, TaskRunnerOptions options)
         {
             if (!TryGetRunner(name, out var runner))
             {
@@ -410,7 +410,7 @@ namespace EasyTaskRunner
             runner.Fire(fire, options);
         }
 
-        public void Fire(string name, RequestTaskFire fire, int count)
+        public void Fire(string name, TaskFire fire, int count)
         {
             if (!TryGetRunner(name, out var runner))
             {
@@ -421,7 +421,7 @@ namespace EasyTaskRunner
             runner.Fire(fire, count);
         }
 
-        public void Fire(string name, RequestTaskFire fire, int count, int maxParallel)
+        public void Fire(string name, TaskFire fire, int count, int maxParallel)
         {
             if (!TryGetRunner(name, out var runner))
             {
@@ -432,7 +432,7 @@ namespace EasyTaskRunner
             runner.Fire(fire, count, maxParallel);
         }
 
-        public void Fire(string name, RequestTaskFire fire, int count, int maxParallel, int maxParallelCount)
+        public void Fire(string name, TaskFire fire, int count, int maxParallel, int maxParallelCount)
         {
             if (!TryGetRunner(name, out var runner))
             {

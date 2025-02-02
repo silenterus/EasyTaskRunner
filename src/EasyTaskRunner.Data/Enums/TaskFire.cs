@@ -1,6 +1,6 @@
 ﻿namespace EasyTaskRunner.Data.Enums;
 
-public enum RequestTaskFire
+public enum TaskFire
 {
     Idle,
     Start,

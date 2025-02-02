@@ -4,12 +4,13 @@ using EasyTaskRunner.Data.Utilities;
 
 namespace EasyTaskRunner.Core
 {
+    using TaskStatus = Data.Enums.TaskStatus;
     public abstract class TaskRunnerBase<TAction> : ITaskRunner
         where TAction : Delegate
     {
         private CancellationTokenSource? _ctx;
         private readonly TaskRunnerOptions _options;
-        private RequestTaskStatus _taskStatus = RequestTaskStatus.NotStarted;
+        private TaskStatus _taskStatus = Data.Enums.TaskStatus.NotStarted;
 
         protected TaskRunnerBase(string name, TAction execute, TaskRunnerOptions options)
         {
@@ -31,7 +32,7 @@ namespace EasyTaskRunner.Core
         private bool IsStopping { get; set; } = false;
 
         private bool IsPaused { get; set; } = false;
-        private RequestTaskStatus TaskStatus
+        private TaskStatus TaskStatus
         {
             get { return _taskStatus; }
             set
@@ -124,11 +125,11 @@ namespace EasyTaskRunner.Core
 
             IsStopping = true;
             IsPaused = false;
-            TaskStatus = RequestTaskStatus.Stopping;
+            TaskStatus = TaskStatus.Stopping;
             _ctx?.Cancel();
 
             await WaitAndHandleCompletion();
-            TaskStatus = RequestTaskStatus.Stopped;
+            TaskStatus = TaskStatus.Stopped;
         }
 
         private async Task WaitAndHandleCompletion()
@@ -139,7 +140,7 @@ namespace EasyTaskRunner.Core
             }
             catch (AggregateException)
             {
-                TaskStatus = RequestTaskStatus.Faulted;
+                TaskStatus = TaskStatus.Faulted;
             }
         }
 
@@ -158,22 +159,22 @@ namespace EasyTaskRunner.Core
 
         private async Task Runner(CancellationToken token, int count, bool endless)
         {
-            TaskStatus = RequestTaskStatus.Running;
+            TaskStatus = TaskStatus.Running;
             try
             {
                 for (int i = 0; i < count; i++)
                 {
                     if (IsPaused)
                     {
-                        TaskStatus = RequestTaskStatus.Paused;
+                        TaskStatus = TaskStatus.Paused;
                         i--;
                         continue;
                     }
 
-                    TaskStatus = RequestTaskStatus.Running;
+                    TaskStatus = TaskStatus.Running;
                     if (IsStopping)
                     {
-                        TaskStatus = RequestTaskStatus.Stopping;
+                        TaskStatus = TaskStatus.Stopping;
                         break;
                     }
 
@@ -188,12 +189,12 @@ namespace EasyTaskRunner.Core
                     catch (TaskCanceledException)
                     {
                         IsStopping = true;
-                        TaskStatus = RequestTaskStatus.Canceled;
+                        TaskStatus = TaskStatus.Canceled;
                         break;
                     }
                     catch (Exception)
                     {
-                        TaskStatus = RequestTaskStatus.Faulted;
+                        TaskStatus = TaskStatus.Faulted;
                         _options.ErrorCount.Error(["Runner", "Error", "All"]);
                         if (!_options.ErrorCount.ReachedAll())
                         {
@@ -201,7 +202,7 @@ namespace EasyTaskRunner.Core
                         }
 
                         IsStopping = true;
-                        TaskStatus = RequestTaskStatus.Faulted;
+                        TaskStatus = TaskStatus.Faulted;
                         break;
                     }
                 }
@@ -213,66 +214,66 @@ namespace EasyTaskRunner.Core
             }
             catch (TaskCanceledException)
             {
-                TaskStatus = RequestTaskStatus.Canceled;
+                TaskStatus = TaskStatus.Canceled;
             }
             catch (Exception)
             {
-                TaskStatus = RequestTaskStatus.Faulted;
+                TaskStatus = TaskStatus.Faulted;
             }
             finally
             {
-                if (TaskStatus == RequestTaskStatus.Running)
+                if (TaskStatus == TaskStatus.Running)
                 {
-                    TaskStatus = RequestTaskStatus.Completed;
+                    TaskStatus = TaskStatus.Completed;
                 }
                 IsStopping = false;
             }
         }
 
-        public void Fire(RequestTaskFire fire, TaskRunnerOptions options)
+        public void Fire(TaskFire fire, TaskRunnerOptions options)
         {
             SetOptions(options);
             Fire(fire);
         }
 
-        public string FireWait(RequestTaskFire fire)
+        public string FireWait(TaskFire fire)
         {
             return string.Empty;
         }
 
-        public void Fire(RequestTaskFire fire)
+        public void Fire(TaskFire fire)
         {
             switch (fire)
             {
-                case RequestTaskFire.Start:
+                case TaskFire.Start:
                     StartRunner().GetAwaiter();
                     break;
 
-                case RequestTaskFire.Restart:
+                case TaskFire.Restart:
                     Restart();
                     break;
 
-                case RequestTaskFire.Stop:
+                case TaskFire.Stop:
                     StopAsync().GetAwaiter();
                     break;
 
-                case RequestTaskFire.Pause:
+                case TaskFire.Pause:
                     PauseAsync().GetAwaiter();
                     break;
-                case RequestTaskFire.UnPause:
+                case TaskFire.UnPause:
                     UnPauseAsync().GetAwaiter();
                     break;
-                case RequestTaskFire.Toggle:
+                case TaskFire.Toggle:
                     PauseToggle().GetAwaiter();
                     return;
 
-                case RequestTaskFire.Fire:
+                case TaskFire.Fire:
                     FireOnce();
                     return;
-                case RequestTaskFire.FireWait:
+                case TaskFire.FireWait:
                     FireWait();
                     return;
-                case RequestTaskFire.FireEndless:
+                case TaskFire.FireEndless:
                     FireEndless();
                     return;
             }
@@ -297,19 +298,19 @@ namespace EasyTaskRunner.Core
             Task.Delay(50).Wait();
         }
 
-        public void Fire(RequestTaskFire fire, int count)
+        public void Fire(TaskFire fire, int count)
         {
             _options.SetCounts(count, 0, 0);
             Fire(fire);
         }
 
-        public void Fire(RequestTaskFire fire, int count, int maxParallel)
+        public void Fire(TaskFire fire, int count, int maxParallel)
         {
             _options.SetCounts(count, maxParallel, maxParallel);
             Fire(fire);
         }
 
-        public void Fire(RequestTaskFire fire, int count, int maxParallel, int maxParallelCount)
+        public void Fire(TaskFire fire, int count, int maxParallel, int maxParallelCount)
         {
             _options.SetCounts(count, maxParallel, maxParallelCount);
             Fire(fire);
@@ -317,7 +318,7 @@ namespace EasyTaskRunner.Core
 
 
 
-        private protected virtual string Status(RequestTaskStatus status, bool useDelay = false)
+        private protected virtual string Status(TaskStatus status, bool useDelay = false)
         {
             if (useDelay)
             {
@@ -326,15 +327,15 @@ namespace EasyTaskRunner.Core
 
             return status switch
             {
-                RequestTaskStatus.JustInited => $"'{Name}' is idle. - {StatusCount()}",
-                RequestTaskStatus.NotStarted => $"'{Name}' not started yet. - {StatusCount()}",
-                RequestTaskStatus.Running => $"'{Name}' is currently running. - {StatusCount()}",
-                RequestTaskStatus.Stopped => $"'{Name}' is stopped. - {StatusCount()}",
-                RequestTaskStatus.Stopping => $"'{Name}' is stopping. - {StatusCount()}",
-                RequestTaskStatus.Completed => $"'{Name}' has completed execution. - {StatusCount()}",
-                RequestTaskStatus.Canceled => $"'{Name}' was cancelled. - {StatusCount()}",
-                RequestTaskStatus.Faulted => $"'{Name}' faulted!!! - {StatusCount()}",
-                RequestTaskStatus.Paused => $"'{Name}' is paused. - {StatusCount()}",
+                TaskStatus.JustInited => $"'{Name}' is idle. - {StatusCount()}",
+                TaskStatus.NotStarted => $"'{Name}' not started yet. - {StatusCount()}",
+                TaskStatus.Running => $"'{Name}' is currently running. - {StatusCount()}",
+                TaskStatus.Stopped => $"'{Name}' is stopped. - {StatusCount()}",
+                TaskStatus.Stopping => $"'{Name}' is stopping. - {StatusCount()}",
+                TaskStatus.Completed => $"'{Name}' has completed execution. - {StatusCount()}",
+                TaskStatus.Canceled => $"'{Name}' was cancelled. - {StatusCount()}",
+                TaskStatus.Faulted => $"'{Name}' faulted!!! - {StatusCount()}",
+                TaskStatus.Paused => $"'{Name}' is paused. - {StatusCount()}",
                 _ => $"Unknown status. - {StatusCount()}"
             };
         }
@@ -357,7 +358,7 @@ namespace EasyTaskRunner.Core
 
 
 
-        public RequestTaskStatus GetTaskStatus()
+        public TaskStatus GetTaskStatus()
         {
             return TaskStatus;
         }
@@ -373,16 +374,7 @@ namespace EasyTaskRunner.Core
         {
             if (_options.MaxParallel > 0)
             {
-                if (_options.UseSemaphore)
-                {
-                    ExecuteTaskParallelSemaphor(token, _options.MaxParallel, _options.MaxCount).Wait(token);
-                }
-                else
-                {
-                    ExecuteTaskParallelSemaphor(token, _options.MaxParallel, _options.MaxCount).Wait(token);
-
-                    //ExecuteTaskParallel(token, _options.MaxParallel).Wait(token);
-                }
+                ExecuteTaskParallelSemaphor(token, _options.MaxParallel, _options.MaxCount).Wait(token);
             }
             else
             {
