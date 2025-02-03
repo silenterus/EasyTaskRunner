@@ -39,7 +39,7 @@ namespace EasyTaskRunner.Core
             {
                 if (_options.UseLog)
                 {
-                    // Implement logging if necessary
+                    //TODO Implement logging
                 }
                 _taskStatus = value;
             }
@@ -374,7 +374,7 @@ namespace EasyTaskRunner.Core
         {
             if (_options.MaxParallel > 0)
             {
-                ExecuteTaskParallelSemaphor(token, _options.MaxParallel, _options.MaxCount).Wait(token);
+                ExecuteTaskParallelSemaphor(token, _options.MaxParallel, _options.Cycles).Wait(token);
             }
             else
             {
@@ -384,37 +384,10 @@ namespace EasyTaskRunner.Core
 
         protected abstract Task ExecuteTaskAsync(CancellationToken token);
 
-        private async Task ExecuteTaskParallel(CancellationToken token, int maxCount)
-        {
-            var tasks = new Task[maxCount];
 
-            for (int i = 0; i < maxCount; i++)
-            {
-                tasks[i] = LaunchTaskAsync(token);
-            }
 
-            try
-            {
-                await Task.WhenAll(tasks);
-            }
-            catch (Exception ex)
-            {
-                throw new AggregateException("Error occurred while executing tasks in parallel", ex);
-            }
-        }
 
-        private async Task LaunchTaskAsync(CancellationToken token)
-        {
-            token.ThrowIfCancellationRequested();
-            try
-            {
-                await Task.Run(() => ExecuteTaskAsync(token), token);
-            }
-            catch
-            {
-                throw;
-            }
-        }
+
 
         private async Task ExecuteTaskParallelSemaphor(CancellationToken token, int maxParallel, int maxCount)
         {

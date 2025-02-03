@@ -340,7 +340,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var name = "ParallelFireTask";
             var maxParallel = 4;
             var delay = 50;
-            var options = TaskRunnerHelper.CreateOptions(count: 1, maxParallel: maxParallel, endless: false, delay: delay);
+            var options = TaskRunnerHelper.CreateOptions(count: 1, maxParallel: maxParallel, maxCount:maxParallel, endless: false, delay: delay);
             var taskRunner = new Core.TaskRunner(name, SampleExecution, options);
 
             await Task.Run(() => taskRunner.Fire(TaskFire.Start));
@@ -356,7 +356,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var name = "SemaphoreTask";
             var count = 10;
             _executionCount = 0;
-            var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: 2, endless: false, delay: 100, useSemaphore: true);
+            var options = TaskRunnerHelper.CreateOptions(count: count, maxParallel: 1, maxCount:0, endless: false, delay: 100, useSemaphore: true);
             var taskRunner = new Core.TaskRunner(name, SampleExecution, options);
 
             await Task.Run(() => taskRunner.Fire(TaskFire.Start));

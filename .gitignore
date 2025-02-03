@@ -12,6 +12,7 @@
 .config
 # Rider
 .idea/
+/nuget_packet/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -394,3 +395,13 @@ builds/*
 /builds/
 /builds/*
 /builds/**
+
+
+
+*/packable.txt
+./packable.txt
+
+*/uploadable.txt
+./uploadable.txt
+
+./.config

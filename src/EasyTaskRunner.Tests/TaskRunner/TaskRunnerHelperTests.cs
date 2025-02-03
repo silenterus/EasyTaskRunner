@@ -310,7 +310,7 @@ namespace EasyTaskRunner.Tests.TaskRunner
             var name = "ParallelFireTask";
             var maxParallel = 4;
             var delay = 50;
-            var options = TaskRunnerHelper.CreateOptions(count: 1, maxParallel: maxParallel, endless: false, delay: delay);
+            var options = TaskRunnerHelper.CreateOptions(count: 1, maxParallel: maxParallel,maxCount:maxParallel, endless: false, delay: delay);
             var taskRunner = TaskRunnerHelper.CreateAndStart<Core.TaskRunner, Action>(name, SampleExecution, options);
 
             await Task.Delay(delay);

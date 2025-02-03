@@ -6,7 +6,7 @@ using EasyTaskRunner.Data.Utilities;
 namespace EasyTaskRunner.Core
 {
 
-    public class TaskRunnerResult<TResult> : TaskRunnerBase<Func<TResult>>, ITaskRunnerWithResult<TResult>
+    public class TaskRunnerResult<TResult> : TaskRunnerBase<Func<TResult>>, ITaskRunnerResult<TResult>
     {
         private readonly ConcurrentBag<TResult> _results = new ConcurrentBag<TResult>();
 
@@ -35,16 +35,13 @@ namespace EasyTaskRunner.Core
         }
     }
 
-    public class TaskRunnerResult<T, TResult> : TaskRunnerBase<Func<T, TResult>>, ITaskRunnerWithParam, ITaskRunnerWithResult<TResult>
+    public class TaskRunnerResult<T, TResult> : TaskRunnerBase<Func<T, TResult>>, ITaskRunnerParam, ITaskRunnerResult<TResult>
     {
         private readonly ConcurrentBag<TResult> _results = new ConcurrentBag<TResult>();
         private T Parameter1 { get; set; }
 
-        public TaskRunnerResult(string name, Func<T, TResult> execute, TaskRunnerOptions options, T parameter)
-            : base(name, execute, options)
-        {
-            this.Parameter1 = parameter;
-        }
+        public TaskRunnerResult(string name, Func<T, TResult> execute, TaskRunnerOptions options)
+            : base(name, execute, options) { }
 
         public void SetParameters(T parameter)
         {
@@ -58,7 +55,7 @@ namespace EasyTaskRunner.Core
             await Task.CompletedTask;
         }
 
-        void ITaskRunnerWithParam.Fire(TaskFire fire, int count, params object[]? parameters)
+        void ITaskRunnerParam.Fire(TaskFire fire, int count, params object[]? parameters)
         {
             if (parameters is { Length: > 0 })
             {
@@ -79,7 +76,7 @@ namespace EasyTaskRunner.Core
     }
 
 
-    public class TaskRunnerResult<T1, T2, TResult> : TaskRunnerBase<Func<T1, T2, TResult>>, ITaskRunnerWithParam, ITaskRunnerWithResult<TResult>
+    public class TaskRunnerResult<T1, T2, TResult> : TaskRunnerBase<Func<T1, T2, TResult>>, ITaskRunnerParam, ITaskRunnerResult<TResult>
     {
         private readonly ConcurrentBag<TResult> _results = new ConcurrentBag<TResult>();
         private T1 Parameter1 { get; set; }
@@ -105,7 +102,7 @@ namespace EasyTaskRunner.Core
             await Task.CompletedTask;
         }
 
-        void ITaskRunnerWithParam.Fire(TaskFire fire, int count, params object[]? parameters)
+        void ITaskRunnerParam.Fire(TaskFire fire, int count, params object[]? parameters)
         {
             if (parameters is { Length: > 0 })
             {

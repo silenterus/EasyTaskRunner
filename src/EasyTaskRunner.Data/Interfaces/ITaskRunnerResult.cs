@@ -1,6 +1,6 @@
 ﻿namespace EasyTaskRunner.Data.Interfaces;
 
-public interface ITaskRunnerWithResult<TResult> : ITaskRunner
+public interface ITaskRunnerResult<out TResult> : ITaskRunner
 {
     IEnumerable<TResult> GetResults();
     void ClearResults();

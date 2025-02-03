@@ -80,15 +80,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0-2.final" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" PrivateAssets="all" />
   </ItemGroup>
 
 
-  <!--
-    <ItemGroup>
-      <None Include="bin\Release\$(TargetFramework)\win-x64\publish\**\*.*" Pack="true" PackagePath="tools\win-x64\" Condition="Exists('bin\Release\$(TargetFramework)\win-x64\publish\')" />
 
-  </ItemGroup>-->
 
   <ItemGroup>
     <None Include="bin\Release\$(TargetFramework)\*.*" Pack="true" PackagePath="lib\$(TargetFramework)\" />

@@ -9,15 +9,11 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount 
     public ErrorCounter ErrorCount { get; private set; } = new ErrorCounter();
     public int MaxParallel { get; private set; } = maxParallel;
 
-    public int MaxCount { get; private set; } = maxCount;
+    public int Cycles { get; private set; } = maxCount;
 
     public bool UseLog { get; private set; } = useLog;
 
-    public TaskRunnerOptions SetDelay(int delay)
-    {
-        Delay = delay;
-        return this;
-    }
+ 
 
     public TaskRunnerOptions SetEndless(bool endless)
     {
@@ -62,16 +58,16 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount 
     {
         if (maxCount > 0)
         {
-            MaxCount = maxCount;
+            Cycles = maxCount;
         }
         else
         {
-            MaxCount = 1;
+            Cycles = 1;
         }
 
-        if (MaxCount < 1)
+        if (Cycles < 1)
         {
-            MaxCount = 1;
+            Cycles = 1;
         }
         return this;
     }
@@ -97,9 +93,9 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount 
             Count = 1;
         }
 
-        if (MaxCount < 1)
+        if (Cycles < 1)
         {
-            MaxCount = 1;
+            Cycles = 1;
         }
 
         if (MaxParallel < 0)
@@ -107,14 +103,14 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount 
             MaxParallel = 0;
         }
 
-        if (MaxParallel > 0 && MaxCount == 0)
+        if (MaxParallel > 0 && Cycles == 0)
         {
-            MaxCount = 1;
+            Cycles = 1;
         }
 
-        if (MaxParallel > 0 && MaxParallel < MaxCount)
+        if (MaxParallel > 0 && MaxParallel < Cycles)
         {
-            MaxParallel = MaxCount;
+            MaxParallel = Cycles;
         }
 
         if (Delay < 0)
@@ -136,7 +132,7 @@ public class TaskRunnerOptions(int count = 1, int maxParallel = 0, int maxCount 
         AsyncRunners = options.AsyncRunners;
         ErrorCount = new ErrorCounter();
         MaxParallel = options.MaxParallel;
-        MaxCount = options.MaxCount;
+        Cycles = options.Cycles;
         UseLog = options.UseLog;
     }
 

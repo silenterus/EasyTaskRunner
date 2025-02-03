@@ -211,13 +211,13 @@ namespace EasyTaskRunner
 
         public bool Add<T>(string name, Action<T> execute, T parameter, TaskRunnerOptions? options = null)
         {
-            var runner = new TaskRunner<T>(name, execute, options ?? new TaskRunnerOptions(), parameter);
+            var runner = new TaskRunner<T>(name, execute, options ?? new TaskRunnerOptions());
             return _runners.TryAdd(name, runner);
         }
 
         public bool Add<T1, T2>(string name, Action<T1, T2> execute, T1 parameter1, T2 parameter2, TaskRunnerOptions? options = null)
         {
-            var runner = new TaskRunner<T1, T2>(name, execute, options ?? new TaskRunnerOptions(), parameter1, parameter2);
+            var runner = new TaskRunner<T1, T2>(name, execute, options ?? new TaskRunnerOptions());
             return _runners.TryAdd(name, runner);
         }
 
@@ -229,7 +229,7 @@ namespace EasyTaskRunner
 
         public bool Add<T, TResult>(string name, Func<T, TResult> execute, T parameter, TaskRunnerOptions? options = null)
         {
-            var runner = new TaskRunnerResult<T, TResult>(name, execute, options ?? new TaskRunnerOptions(), parameter);
+            var runner = new TaskRunnerResult<T, TResult>(name, execute, options ?? new TaskRunnerOptions());
             return _runners.TryAdd(name, runner);
         }
 
@@ -246,7 +246,7 @@ namespace EasyTaskRunner
                 return $"Runner '{name}' not found.";
             }
 
-            if (runner is ITaskRunnerWithParam runnerWithParam)
+            if (runner is ITaskRunnerParam runnerWithParam)
             {
                 if (parameters != null)
                 {
@@ -268,7 +268,7 @@ namespace EasyTaskRunner
                 throw new KeyNotFoundException($"Runner '{name}' not found.");
             }
 
-            if (runner is ITaskRunnerWithResult<TResult> runnerWithResult)
+            if (runner is ITaskRunnerResult<TResult> runnerWithResult)
             {
                 return runnerWithResult.GetResults();
             }
@@ -282,7 +282,7 @@ namespace EasyTaskRunner
         {
             foreach (var runner in _runners.Values)
             {
-                if (runner is ITaskRunnerWithResult<object> runnerWithResult)
+                if (runner is ITaskRunnerResult<object> runnerWithResult)
                 {
                     runnerWithResult.ClearResults();
                 }
@@ -296,7 +296,7 @@ namespace EasyTaskRunner
                 return;
             }
 
-            if (runner is ITaskRunnerWithResult<object> runnerWithResult)
+            if (runner is ITaskRunnerResult<object> runnerWithResult)
             {
                 runnerWithResult.ClearResults();
             }
